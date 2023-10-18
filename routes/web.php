@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CompromissoController;
 use App\Http\Controllers\ConfigNotificacaoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsuarioController;
@@ -32,5 +33,6 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('usuarios', UsuarioController::class);
 Route::resource('confignotificacaos', ConfigNotificacaoController::class);
+Route::resource('compromissos', CompromissoController::class);
 
 require __DIR__.'/auth.php';
