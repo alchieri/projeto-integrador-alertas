@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Compromisso;
 use Illuminate\Http\Request;
 
 class CompromissoController extends Controller
@@ -65,6 +66,12 @@ class CompromissoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $compromisso = Compromisso::find($id);
+
+        $compromisso->delete();
+
+        $compromisso = Compromisso::all();
+        return view('compromissos.index')->with('compromissos', $compromisso)
+            ->with('msg', 'compromisso excluído com sucesso!');
     }
 }
