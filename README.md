@@ -228,3 +228,7 @@ O comando **npm run dev** irá iniciar um servidor NPM. Basta fechá-lo.
 
 > [!IMPORTANT]
 > Caso você tenha criado o login em um projeto existente, é possível que o Breeze tenha sobrescrito por completo o arquivo web.php. Assim, será necessário redefinir as rotas que já existiam antes do Breeze.
+
+# Figma do projeto
+
+https://www.figma.com/file/x9tz9OlakP9SFmlVDOSkxW/Gerenciador-de-Alertas?type=design&node-id=9-98&mode=design
