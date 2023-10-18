@@ -8,6 +8,9 @@ class CompromissoController extends Controller
 {
     public function __construct() {
         $this->middleware('auth')->only(['index','show','store','update','edit','create']);
+        /**
+         * Comentário para tratar conflitos.
+         */
     }
     /**
      * Display a listing of the resource.
