@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 class CompromissoController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth')->only(['index','show','store','update','edit','create']);
+    }
     /**
      * Display a listing of the resource.
      */
