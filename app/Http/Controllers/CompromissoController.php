@@ -18,7 +18,8 @@ class CompromissoController extends Controller
      */
     public function index()
     {
-        //
+        $compromisso = Compromisso::all();
+        return view('compromissos.index')->with('compromissos', $compromisso);
     }
 
     /**
