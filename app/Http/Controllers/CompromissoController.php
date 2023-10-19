@@ -92,7 +92,26 @@ class CompromissoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $compromisso = Compromisso::find($id);
+        
+        $compromisso->tipo = $request->input('tipo');
+        $compromisso->nome = $request->input('nome');
+        $compromisso->data_inicio = $request->input('data_inicio');
+        $compromisso->descricao = $request->input('descricao');
+        $compromisso->hora_inicio = $request->input('hora_inicio');
+        $compromisso->hora_fim = $request->input('hora_fim');
+        $compromisso->repeticao = $request->input('repeticao');
+        $compromisso->data_fim = $request->input('data_fim');
+        $compromisso->tipo_recorrencia = $request->input('tipo_recorrencia');
+        $compromisso->dias_semana = $request->input('dias_semana');
+        $compromisso->financeiro = $request->input('financeiro');
+        $compromisso->valor = $request->input('valor');
+
+        $compromisso->save();
+
+        $compromisso = Compromisso::all();
+        return view('compromissos.index')->with('compromissos', $compromisso)
+            ->with('msg', 'Compromisso atualizado com sucesso!');
     }
 
     /**
