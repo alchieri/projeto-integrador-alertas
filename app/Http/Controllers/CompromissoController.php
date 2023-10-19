@@ -43,7 +43,13 @@ class CompromissoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $compromisso = Compromisso::find($id);
+        
+        if ($compromisso) {
+        return view('compromissos.show')->with('compromisso', $compromisso);
+        } else {
+            return view('compromissos.show')->with('msg', 'Compromisso não encontrado!');
+        }
     }
 
     /**
