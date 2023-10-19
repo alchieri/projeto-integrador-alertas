@@ -26,7 +26,7 @@ class CompromissoController extends Controller
      */
     public function create()
     {
-        //
+        return view('compromissos.create');
     }
 
     /**
@@ -34,7 +34,27 @@ class CompromissoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $compromisso = new Compromisso();
+
+        $compromisso->tipo = $request->input('tipo');
+        $compromisso->nome = $request->input('nome');
+        $compromisso->data_inicio = $request->input('data_inicio');
+        $compromisso->descricao = $request->input('descricao');
+        $compromisso->hora_inicio = $request->input('hora_inicio');
+        $compromisso->hora_fim = $request->input('hora_fim');
+        $compromisso->repeticao = $request->input('repeticao');
+        $compromisso->data_fim = $request->input('data_fim');
+        $compromisso->tipo_recorrencia = $request->input('tipo_recorrencia');
+        $compromisso->dias_semana = $request->input('dias_semana');
+        $compromisso->financeiro = $request->input('financeiro');
+        $compromisso->valor = $request->input('valor');
+        
+
+        $compromisso->save();
+
+        $compromisso = Compromisso::all();
+        return view('compromissos.index')->with('compromissos', $compromisso)
+            ->with('msg', 'Compromisso cadastrado com sucesso!');            
     }
 
     /**
@@ -50,7 +70,14 @@ class CompromissoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $compromisso = Compromisso::find($id);
+        if ($compromisso) {
+            return view('compromissos.edit')->with('compromissos', $compromisso);
+        } else {
+            $compromisso = Compromisso::all();
+            return view('compromissos.index')->with('compromissos', $compromisso)
+                ->with('msg', 'Compromisso não encontrado!');
+        }
     }
 
     /**
@@ -72,6 +99,6 @@ class CompromissoController extends Controller
 
         $compromisso = Compromisso::all();
         return view('compromissos.index')->with('compromissos', $compromisso)
-            ->with('msg', 'compromisso excluído com sucesso!');
+            ->with('msg', 'Compromisso excluído com sucesso!');
     }
 }
