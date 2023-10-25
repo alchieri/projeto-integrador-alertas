@@ -41,7 +41,7 @@
 </form>
     <div id="content-show">
         <h1>Teste</h1>
-        @yield('content-show')
+        @include('compromissos.show')
     <div>
 </div>
 
