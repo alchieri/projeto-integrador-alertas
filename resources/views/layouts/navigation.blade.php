@@ -24,7 +24,7 @@
                     <x-nav-link :href="route('confignotificacaos.index')" :active="request()->routeIs('confignotificacaos.index')">
                         {{ __('Notificações') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('confignotificacaos.index')" :active="request()->routeIs('confignotificacaos.index')">
+                    <x-nav-link :href="route('compromissos.index')" :active="request()->routeIs('compromissos.index')">
                         {{ __('Calendário') }}
                     </x-nav-link>
                 </div>
