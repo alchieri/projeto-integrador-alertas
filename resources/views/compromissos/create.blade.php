@@ -159,7 +159,7 @@
                 if (yearFromURL) {
                     document.getElementById('year-placeholder').textContent = yearFromURL;
                 } else {
-                    document.getElementById('year-placeholder').textContent = 'Nenhum ano encontrado na URL.';
+                    document.getElementById('year-placeholder').textContent = ' ';
                 }
 
                 if (monthFromURL) {
@@ -167,16 +167,16 @@
                     if (!isNaN(monthNumber) && monthNumber >= 1 && monthNumber <= 12) {
                         document.getElementById('month-placeholder').textContent = monthNames[monthNumber - 1];
                     } else {
-                        document.getElementById('month-placeholder').textContent = 'Mês inválido na URL.';
+                        document.getElementById('month-placeholder').textContent = ' ';
                     }
                 } else {
-                    document.getElementById('month-placeholder').textContent = 'Nenhum mês encontrado na URL.';
+                    document.getElementById('month-placeholder').textContent = ' ';
                 }
 
                 if (dayFromURL) {
                     document.getElementById('day-placeholder').textContent = dayFromURL;
                 } else {
-                    document.getElementById('day-placeholder').textContent = 'Nenhum dia encontrado na URL.';
+                    document.getElementById('day-placeholder').textContent = ' ';
                 }
                 
             </script>
