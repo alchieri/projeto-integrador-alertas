@@ -83,13 +83,11 @@
 
                 <div>    
                     <label for="tipo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo:</label>
-                        <select class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" name="tipo">
-                            <nav>
-                                <option value="pontual">PONTUAL</option>
-                                <option value="recorrente">RECORRENTE</option>
-                                <option value="vencimento"><a href="{{ route('createVencimento') }}">VENCIMENTO</a></option>
-                            </nav>
-                        </select>
+                    <select class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" name="tipo">
+                        <option value="pontual">PONTUAL</option>
+                        <option value="recorrente">RECORRENTE</option>
+                        <option value="vencimento">VENCIMENTO</option>
+                    </select>
                 </div>
                 <div>
                     <label for="nome" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome:</label>
@@ -101,20 +99,12 @@
                 </div>
 
                     <div class="grid gap-6 mb-6 md:grid-cols-4">
-                        <div>
-                            <label for="horaInicio" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora início:</label>
-                            <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="time" name="horaInicio" id="horaInicio" required>
-                        </div>
-                        <div>
-                            <label for="horaFim" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora Fim:</label>
-                            <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="time" name="horaFim" id="horaFim" required>
-                        </div>
-                    </div>
+                        
 
                 <div class="grid gap-6 mb-6 md:grid-cols-2">
                     <div>
-                    <label for="dataInício" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Data Início:</label>
-                    <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="date" name="dataInício" id="dataInício" required>
+                    <label for="vencimento" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vencimento:</label>
+                    <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="vencimento" id="vencimento" required>
                     </div>
                 </div>
                 
