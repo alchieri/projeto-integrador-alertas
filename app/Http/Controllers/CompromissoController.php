@@ -25,9 +25,14 @@ class CompromissoController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('compromissos.create');
+        $year = $request->query('year');
+        $mouth = $request->query('mouth');
+        $day = $request->query('day');
+        $dataInicio = $year-$mouth-$day;
+        $compromisso = Compromisso::query()->where('data_inicio', $dataInicio);
+        return view('compromissos.create')->with('year', $year)->with('mouth', $mouth)->with('day', $day);
     }
 
     /**
@@ -127,4 +132,10 @@ class CompromissoController extends Controller
         return view('compromissos.index')->with('compromissos', $compromisso)
             ->with('msg', 'Compromisso excluído com sucesso!');
     }
+    
+    public function createVencimento()
+    {
+        return view('compromissos.createVencimento');
+    }
+
 }

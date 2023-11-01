@@ -1,3 +1,5 @@
+
+
 <h2 class="font-semibold text-xl text-gray-800 leading-tight">Mostrando dados do usuário</h2>
 @if(isset($msg))
     <h3 style="color: red;">Compromisso não encontrado!</h3>
@@ -9,3 +11,4 @@
         <p class="mb-3 text-gray-500 dark:text-gray-400"><strong>Hora-Início:</strong> {{ $compromisso->hora_inicio }} </p>
     </div>    
 @endif
+

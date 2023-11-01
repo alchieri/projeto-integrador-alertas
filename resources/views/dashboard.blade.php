@@ -11,6 +11,7 @@
                 <div class="p-6 text-gray-900">
                     <div class="content">
                         @yield('content')
+                        
                     </div>
                 </div>
             </div>
