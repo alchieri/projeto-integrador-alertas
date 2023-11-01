@@ -75,6 +75,10 @@
                     .botao:hover {
                         background-color: #201f29;
                     }
+
+                    .hidden {
+                        display : none;
+                    }
                 </style>
 
                 <div class="container">
@@ -82,14 +86,15 @@
                 </div>
 
                 <div>    
-                    <label for="tipo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo:</label>
-                        <select class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" name="tipo">
-                            <nav>
-                                <option value="pontual">PONTUAL</option>
-                                <option value="recorrente">RECORRENTE</option>
-                                <option value="vencimento"><a href="{{ route('createVencimento') }}">VENCIMENTO</a></option>
-                            </nav>
-                        </select>
+                    <label for="selectTipo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo:</label>
+                    <select id="selectTipo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="tipo">
+                        <nav>
+                            <option value=""></option>
+                            <option value="option1">PONTUAL</option>
+                            <option value="option2">RECORRENTE</option>
+                            <option value="option3">VENCIMENTO</option>
+                        </nav>
+                    </select>
                 </div>
                 <div>
                     <label for="nome" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome:</label>
@@ -99,25 +104,87 @@
                     <label for="descricao" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descrição:</label>
                     <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="descricao" id="descricao" required>
                 </div>
-
-                    <div class="grid gap-6 mb-6 md:grid-cols-4">
-                        <div>
-                            <label for="horaInicio" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora início:</label>
-                            <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="time" name="horaInicio" id="horaInicio" required>
+                    <!-- Inicio do Create Pontual -->
+                    <div id="option1" class="hidden">
+                        <div class="grid gap-6 mb-6 md:grid-cols-4">
+                            <div>
+                                <label for="horaInicio" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora início:</label>
+                                <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="time" name="horaInicio" id="horaInicio" required>
+                            </div>
+                            <div>
+                                <label for="horaFim" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora Fim:</label>
+                                <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="time" name="horaFim" id="horaFim" required>
+                            </div>
                         </div>
-                        <div>
-                            <label for="horaFim" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora Fim:</label>
-                            <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="time" name="horaFim" id="horaFim" required>
-                        </div>
-                    </div>
 
-                <div class="grid gap-6 mb-6 md:grid-cols-2">
-                    <div>
-                    <label for="dataInício" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Data Início:</label>
-                    <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="date" name="dataInício" id="dataInício" required>
+                        <div class="grid gap-6 mb-6 md:grid-cols-2">
+                            <div>
+                                <label for="dataInício" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Data Início:</label>
+                                <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="date" name="dataInício" id="dataInício" required>
+                            </div>
+                        </div> 
+                    </div> 
+                    <!-- Final do Create Pontual -->
+                    <div id="option2" class="hidden">
+                        <div class="grid gap-6 mb-6 md:grid-cols-4">
+                            <div>
+                                <label for="horaInicio" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora início:</label>
+                                <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="time" name="horaInicio" id="horaInicio" required>
+                            </div>
+                            <div>
+                                <label for="horaFim" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora Fim:</label>
+                                <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="time" name="horaFim" id="horaFim" required>
+                            </div>
+                            <div classe="grid gap-6 mb-6 md:grid-cols-2">
+                                <label for="horaFim" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo de Recorrência</label>
+                                <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="selecaorecorrencia" id="selecaorecorrencia">
+                                <option value=""></option>
+                                <option value="diario">Diário</option>
+                                <option value="semanal">Semanal</option>
+                                <option value="periodico">Periódico</option>
+                                <option value="anual">Anual</option>
+                            </select>
+                            </div>
+                        </div>  
+                        
+                        <div class="grid gap-6 mb-6 md:grid-cols-2">
+                            <div>
+                                <label for="dataInício" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Data Início:</label>
+                                <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="date" name="dataInício" id="dataInício" required>
+                            </div>
+                        </div> 
+                        <div class="grid gap-6 mb-6 md:grid-cols-2">
+                            <div>
+                                <label for="dataFim" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Data Fim:</label>
+                                <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="date" name="dataFim" id="dataFim" required>
+                            </div>
+                        </div> 
                     </div>
-                </div>
-                
+                    <!-- Inicio do Create Vencimento -->
+                    <div id="option3" class="hidden">
+                        <div class="grid gap-6 mb-6 md:grid-cols-2">
+                            <div>
+                                <label for="valor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Valor:</label>
+                                <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="valor" id="valor" required>
+                            </div>
+                            <div class="grid gap-6 mb-6 md:grid-cols-1">
+                                
+                                <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="selecaorecorrencia" id="selecaorecorrencia">
+                                    <option value="recorrencia">Tipo de Recorrência</option>
+                                    <option value="diario">Diário</option>
+                                    <option value="semanal">Semanal</option>
+                                    <option value="periodico">Periódico</option>
+                                    <option value="anual">Anual</option>
+                                    <option value="semrecorrencia">Sem Recorrência</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="vencimento" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vencimento:</label>
+                                <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="date" name="vencimento" id="vencimento" required>
+                            </div>
+                        </div>
+                    </div>    
+                    <!-- Final do Create Vencimento -->
                 <div>
                     <button class="botao">Salvar</button>
                     <button class="botao">Cancelar</button>
@@ -210,6 +277,22 @@
     </div>
                 
 </div>
+            <script>
+                const select = document.getElementById('selectTipo');
+                const divs = document.querySelectorAll('div[id^="option"]');
+
+                select.addEventListener('change', function(){
+                    divs.forEach(div => {
+                        div.classList.add('hidden');
+                    });
+                
+                const selectedOption = document.getElementById(select.value);
+                if  (selectedOption){
+                    selectedOption.classList.remove('hidden');
+                }
+            });
+
+            </script>
 
 
 @endsection
