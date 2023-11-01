@@ -17,4 +17,5 @@
             </div>
         </div>
     </div>
+    <div id="calendar"></div>
 </x-app-layout>
