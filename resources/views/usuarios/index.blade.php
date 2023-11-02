@@ -1,20 +1,21 @@
 @extends('dashboard')
 @section('content')
-            <style>
-                .botao {
-                    background-color: #3f3f43;
-                    color: white;
-                    padding: 10px 20px;
-                    border: none;
-                    cursor: pointer;
-                    border-radius: 10px;
 
-                }
+    <style>
+        .botao {
+            background-color: #3f3f43;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
 
-                .botao:hover {
-                    background-color: #201f29;
-                }
-            </style>
+        }
+
+        .botao:hover {
+            background-color: #201f29;
+        }
+    </style>
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">Usuários Cadastrados</h2>
     <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
     <a href="/usuarios/create" class="botao">Cadastrar</a>

@@ -132,10 +132,5 @@ class CompromissoController extends Controller
         return view('compromissos.index')->with('compromissos', $compromisso)
             ->with('msg', 'Compromisso excluído com sucesso!');
     }
-    
-    public function createVencimento()
-    {
-        return view('compromissos.createVencimento');
-    }
 
 }

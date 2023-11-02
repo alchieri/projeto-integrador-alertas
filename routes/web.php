@@ -34,7 +34,7 @@ Route::middleware('auth')->group(function () {
 Route::resource('usuarios', UsuarioController::class);
 Route::resource('confignotificacaos', ConfigNotificacaoController::class);
 Route::resource('compromissos', CompromissoController::class);
-Route::get('/createVencimento', [CompromissoController::class, 'createVencimento'])->name('createVencimento');
+
 
 
 require __DIR__.'/auth.php';
