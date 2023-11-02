@@ -1,7 +1,7 @@
 @extends('dashboard')
 @section('content')
 
-<div class="grid gap-1 mb-1 md:grid-cols-2">
+<div class="grid gap-4 mb-1 md:grid-cols-2">
 
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">Cadastro de Novo Compromisso</h2>
     <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
@@ -129,6 +129,7 @@
             </div> 
             <!-- Final do Create Pontual -->
             <div id="option2" class="selectHidden">
+                
                 <div class="grid gap-6 mb-6 md:grid-cols-4">
                     <div>
                         <label for="horaInicio" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora início:</label>
@@ -138,30 +139,31 @@
                         <label for="horaFim" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora Fim:</label>
                         <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="time" name="horaFim" id="horaFim" required>
                     </div>
-                    <div classe="grid gap-6 mb-6 md:grid-cols-2">
-                        <label for="horaFim" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo de Recorrência</label>
+
+                    <div class="col-span-2">
+                        <label for="selecaorecorrencia" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo de Recorrência</label>
                         <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="selecaorecorrencia" id="selecaorecorrencia">
                         <option value=""></option>
                         <option value="diario">Diário</option>
                         <option value="semanal">Semanal</option>
                         <option value="periodico">Periódico</option>
                         <option value="anual">Anual</option>
-                    </select>
+                        </select>
                     </div>
                 </div>  
                 
-                <div class="grid gap-6 mb-6 md:grid-cols-2">
+                <div class="grid gap-6 mb-6 md:grid-cols-4">
                     <div>
                         <label for="dataInício" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Data Início:</label>
                         <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="date" name="dataInício" id="dataInício" required>
                     </div>
-                </div> 
-                <div class="grid gap-6 mb-6 md:grid-cols-2">
+                 
                     <div>
                         <label for="dataFim" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Data Fim:</label>
                         <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="date" name="dataFim" id="dataFim" required>
                     </div>
-                </div> 
+                </div>
+
             </div>
             <!-- Inicio do Create Vencimento -->
             <div id="option3" class="selectHidden">
