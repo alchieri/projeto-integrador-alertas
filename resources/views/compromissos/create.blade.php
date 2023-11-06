@@ -6,7 +6,7 @@
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">Cadastro de Novo Compromisso</h2>
     <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
 
-    <form class="z  " method="POST" action="{{ route('compromissos.store') }}">
+    <form class="z  " method="POST" action="{{ route('compromissos.store') }}" novalidate>
         @csrf
         <div>
             <style>
@@ -111,38 +111,38 @@
             <div id="option1" class="selectHidden">
                 <div class="grid gap-6 mb-6 md:grid-cols-4">
                     <div>
-                        <label for="horaInicio" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora início:</label>
-                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="time" name="horaInicio" id="horaInicio" required>
+                        <label for="hora_inicio" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora início:</label>
+                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="time" name="hora_inicio" id="hora_inicio" required>
                     </div>
                     <div>
-                        <label for="horaFim" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora Fim:</label>
-                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="time" name="horaFim" id="horaFim" required>
+                        <label for="hora_fim" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora Fim:</label>
+                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="time" name="hora_fim" id="hora_fim" required>
                     </div>
                 </div>
 
                 <div class="grid gap-6 mb-6 md:grid-cols-2">
                     <div>
-                        <label for="dataInício" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Data Início:</label>
-                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="date" name="dataInício" id="dataInício" required>
+                        <label for="data_inicio" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Data Início:</label>
+                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="date" name="data_início" id="data_início" required>
                     </div>
                 </div> 
             </div> 
             <!-- Final do Create Pontual -->
-            <div id="option2" class="selectHidden">
+            <div id="option2" class="selectHidden" disabled>
                 
                 <div class="grid gap-6 mb-6 md:grid-cols-4">
                     <div>
-                        <label for="horaInicio" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora início:</label>
-                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="time" name="horaInicio" id="horaInicio" required>
+                        <label for="hora_inicio" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora início:</label>
+                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="time" name="hora_inicio" id="hora_inicio" required>
                     </div>
                     <div>
-                        <label for="horaFim" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora Fim:</label>
-                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="time" name="horaFim" id="horaFim" required>
+                        <label for="hora_fim" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora Fim:</label>
+                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="time" name="hora_fim" id="hora_fim" required>
                     </div>
 
                     <div class="col-span-2">
-                        <label for="selecaorecorrencia" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo de Recorrência</label>
-                        <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="selecaorecorrencia" id="selecaorecorrencia">
+                        <label for="tipo_recorrencia" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo de Recorrência</label>
+                        <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="tipo_recorrencia" id="tipo_recorrencia">
                         <option value=""></option>
                         <option value="diario">Diário</option>
                         <option value="semanal">Semanal</option>
@@ -154,19 +154,19 @@
                 
                 <div class="grid gap-6 mb-6 md:grid-cols-4">
                     <div>
-                        <label for="dataInício" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Data Início:</label>
-                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="date" name="dataInício" id="dataInício" required>
+                        <label for="data_inicio" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Data Início:</label>
+                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="date" name="data_inicio" id="data_inicio" required>
                     </div>
                  
                     <div>
-                        <label for="dataFim" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Data Fim:</label>
-                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="date" name="dataFim" id="dataFim" required>
+                        <label for="data_fim" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Data Fim:</label>
+                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="date" name="data_fim" id="data_fim" required>
                     </div>
                 </div>
 
             </div>
             <!-- Inicio do Create Vencimento -->
-            <div id="option3" class="selectHidden">
+            <div id="option3" class="selectHidden" disabled>
                 <div class="grid gap-6 mb-6 md:grid-cols-2">
                     <div>
                         <label for="valor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Valor:</label>
@@ -174,7 +174,7 @@
                     </div>
                     <div class="grid gap-6 mb-6 md:grid-cols-1">
                         
-                        <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="selecaorecorrencia" id="selecaorecorrencia">
+                        <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="tipo_recorrencia" id="tipo_recorrencia">
                             <option value="recorrencia">Tipo de Recorrência</option>
                             <option value="diario">Diário</option>
                             <option value="semanal">Semanal</option>
@@ -184,15 +184,15 @@
                         </select>
                     </div>
                     <div>
-                        <label for="vencimento" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vencimento:</label>
-                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="date" name="vencimento" id="vencimento" required>
+                        <label for="financeiro" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vencimento:</label>
+                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="date" name="financeiro" id="financeiro" required>
                     </div>
                 </div>
             </div>    
             <!-- Final do Create Vencimento -->
             <div>
-                <button class="botao">Salvar</button>
-                <button class="botao">Cancelar</button>
+                <button class="botao" type="submit" value="Salvar">Salvar</button>
+                <button class="botao" type="reset" value="Limpar">Cancelar</button>
             </div>
         </div>
     </form>
@@ -255,6 +255,7 @@
                 }
                 
             </script>
+            
             <div class="tabela">
                 <div style="text-align: center">
                     <table>
