@@ -128,6 +128,11 @@
                 </div> 
             </div> 
             <!-- Final do Create Pontual -->
+
+
+
+
+            
             <div id="option2" class="selectHidden">
                 
                 <div class="grid gap-6 mb-6 md:grid-cols-4">
@@ -162,9 +167,54 @@
                         <label for="dataFim" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Data Fim:</label>
                         <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="date" name="dataFim" id="dataFim" required>
                     </div>
+
+                    <div id="divPeriodico" class="col-span-2 selectHidden">
+                        <div class="grid gap-2 mb-1 md:grid-cols-3">
+                            <div>
+                                <input type="checkbox" id="seg"> 
+                                <label for="seg">Segunda</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="ter"> 
+                                <label for="ter">Terça</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="qua"> 
+                                <label for="qua">Quarta</label> <br>
+                            </div>
+                        </div>
+                        <div class="grid gap-2 mb-1 md:grid-cols-3">
+                            <div>
+                                <input type="checkbox" id="qui"> 
+                                <label for="qui">Quinta</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="sex"> 
+                                <label for="sex">Sexta</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="sab"> 
+                                <label for="sab">Sábado</label> <br>
+                            </div>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="dom"> 
+                            <label for="dom">Domingo</label>
+                        </div>
+                    </div>
+
                 </div>
 
+                
+
             </div>
+
+
+
+
+
+
+
             <!-- Inicio do Create Vencimento -->
             <div id="option3" class="selectHidden">
                 <div class="grid gap-6 mb-6 md:grid-cols-2">
@@ -172,24 +222,65 @@
                         <label for="valor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Valor:</label>
                         <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="valor" id="valor" required>
                     </div>
-                    <div class="grid gap-6 mb-6 md:grid-cols-1">
-                        
-                        <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="selecaorecorrencia" id="selecaorecorrencia">
-                            <option value="recorrencia">Tipo de Recorrência</option>
+                    <div >
+                    <label for="selecaorecorrencia" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo de Recorrência</label>
+                        <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="selecaorecorrencia" id="selecaorecorrenciaVenc">
+                            <option value="recorrencia"></option>
                             <option value="diario">Diário</option>
                             <option value="semanal">Semanal</option>
                             <option value="periodico">Periódico</option>
                             <option value="anual">Anual</option>
                             <option value="semrecorrencia">Sem Recorrência</option>
                         </select>
+                        
+                        
                     </div>
+
+                    
                     <div>
-                        <label for="vencimento" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vencimento:</label>
+                        <label for="vencimento" class="class=col-span-2 block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vencimento:</label>
                         <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="date" name="vencimento" id="vencimento" required>
+
+                        
+                    </div>
+                    <div id="divPeriodicoVenc">
+                        <div class="grid gap-2 mb-1 md:grid-cols-3">
+                            <div>
+                                <input type="checkbox" id="segg"> 
+                                <label for="segg">Segunda</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="terr"> 
+                                <label for="terr">Terça</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="quaa"> 
+                                <label for="quaa">Quarta</label> <br>
+                            </div>
+                        </div>
+                        <div class="grid gap-2 mb-1 md:grid-cols-3">
+                            <div>
+                                <input type="checkbox" id="quii"> 
+                                <label for="quii">Quinta</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="sexx"> 
+                                <label for="sexx">Sexta</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="sabb"> 
+                                <label for="sabb">Sábado</label> <br>
+                            </div>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="domm"> 
+                            <label for="domm">Domingo</label>
+                        </div>
                     </div>
                 </div>
             </div>    
             <!-- Final do Create Vencimento -->
+
             <div>
                 <button class="botao">Salvar</button>
                 <button class="botao">Cancelar</button>
@@ -197,9 +288,16 @@
         </div>
     </form>
 
+
+
+
+
+
+
+    
     <div class="grid gap-1 mb-1 md:grid-cols-1">
         <div>    
-            <!-- <h2 style="text-align: center"><strong>"Data selecionada no Calendário"</strong></h2><br> -->
+            <!-- SEGUNDA COLUNA DA PAGINA-->
             
             
             <div style="text-align: center">
@@ -294,5 +392,54 @@
         }
     });
 </script>
+
+<!-- selecaorecorrencia -->
+
+<script>
+    // Função para verificar a seleção do campo select e mostrar/ocultar a div "divPeriodico" conforme necessário
+    function toggleDivPeriodico() {
+        var selecaorecorrencia = document.getElementById("selecaorecorrencia");
+        var divPeriodico = document.getElementById("divPeriodico");
+
+        if (selecaorecorrencia.value === "periodico") {
+            divPeriodico.style.display = "block";
+        } else {
+            divPeriodico.style.display = "none";
+        }
+    }
+
+    // Adicione um ouvinte de evento para chamar a função quando o valor do select mudar
+    var selecaorecorrencia = document.getElementById("selecaorecorrencia");
+    selecaorecorrencia.addEventListener("change", toggleDivPeriodico);
+
+    // Chame a função para configurar o estado inicial
+    toggleDivPeriodico();
+</script>
+
+<script>
+    // Função para mostrar/ocultar a div "divPeriodicoVenc" com base na seleção do campo select
+    function toggleDivPeriodicoVenc() {
+        var selecaorecorrenciaVenc = document.getElementById("selecaorecorrenciaVenc");
+        var divPeriodicoVenc = document.getElementById("divPeriodicoVenc");
+
+        if (selecaorecorrenciaVenc.value === "periodico") {
+            divPeriodicoVenc.style.display = "block";
+        } else {
+            divPeriodicoVenc.style.display = "none";
+        }
+    }
+
+    // Adicione um ouvinte de evento para chamar a função quando o valor do select mudar
+    var selecaorecorrenciaVenc = document.getElementById("selecaorecorrenciaVenc");
+    selecaorecorrenciaVenc.addEventListener("change", toggleDivPeriodicoVenc);
+
+    // Chame a função para configurar o estado inicial
+    toggleDivPeriodicoVenc();
+</script>
+
+
+
+
+
 
 @endsection
