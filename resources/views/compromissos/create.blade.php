@@ -287,13 +287,7 @@
             </div>
         </div>
     </form>
-
-
-
-
-
-
-
+    
     
     <div class="grid gap-1 mb-1 md:grid-cols-1">
         <div>    
@@ -370,7 +364,7 @@
                         <td id="col1">Evento 3</td>
                         <td id="col2">21:00</td>
                     </tr>
-                    <!-- Adicione mais linhas com dados conforme necessário -->
+                    
                     </table>
                 </div>
             </div>
