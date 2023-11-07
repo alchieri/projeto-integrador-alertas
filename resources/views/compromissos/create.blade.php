@@ -397,12 +397,12 @@
 <!-- selecaorecorrencia -->
 
 <script>
-    // Função para verificar a seleção do campo select e mostrar/ocultar a div "divPeriodico" conforme necessário
+    // Função para mostrar/ocultar a div "divPeriodico" com base na seleção do campo select
     function toggleDivPeriodico() {
-        var selecaorecorrencia = document.getElementById("selecaorecorrencia");
+        var tipoRecorrencia = document.getElementById("tipo_recorrencia");
         var divPeriodico = document.getElementById("divPeriodico");
 
-        if (selecaorecorrencia.value === "periodico") {
+        if (tipoRecorrencia.value === "periodico") {
             divPeriodico.style.display = "block";
         } else {
             divPeriodico.style.display = "none";
@@ -410,8 +410,8 @@
     }
 
     // Adicione um ouvinte de evento para chamar a função quando o valor do select mudar
-    var selecaorecorrencia = document.getElementById("selecaorecorrencia");
-    selecaorecorrencia.addEventListener("change", toggleDivPeriodico);
+    var tipoRecorrencia = document.getElementById("tipo_recorrencia");
+    tipoRecorrencia.addEventListener("change", toggleDivPeriodico);
 
     // Chame a função para configurar o estado inicial
     toggleDivPeriodico();
@@ -420,10 +420,10 @@
 <script>
     // Função para mostrar/ocultar a div "divPeriodicoVenc" com base na seleção do campo select
     function toggleDivPeriodicoVenc() {
-        var selecaorecorrenciaVenc = document.getElementById("selecaorecorrenciaVenc");
+        var selecaoRecorrenciaVenc = document.getElementById("selecaorecorrenciaVenc");
         var divPeriodicoVenc = document.getElementById("divPeriodicoVenc");
 
-        if (selecaorecorrenciaVenc.value === "periodico") {
+        if (selecaoRecorrenciaVenc.value === "periodico") {
             divPeriodicoVenc.style.display = "block";
         } else {
             divPeriodicoVenc.style.display = "none";
@@ -431,16 +431,11 @@
     }
 
     // Adicione um ouvinte de evento para chamar a função quando o valor do select mudar
-    var selecaorecorrenciaVenc = document.getElementById("selecaorecorrenciaVenc");
-    selecaorecorrenciaVenc.addEventListener("change", toggleDivPeriodicoVenc);
+    var selecaoRecorrenciaVenc = document.getElementById("selecaorecorrenciaVenc");
+    selecaoRecorrenciaVenc.addEventListener("change", toggleDivPeriodicoVenc);
 
     // Chame a função para configurar o estado inicial
     toggleDivPeriodicoVenc();
 </script>
-
-
-
-
-
 
 @endsection
