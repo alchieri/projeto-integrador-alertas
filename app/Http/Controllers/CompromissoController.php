@@ -43,17 +43,28 @@ class CompromissoController extends Controller
         $compromisso = new Compromisso();
 
         $compromisso->tipo = $request->input('tipo');
+
+        if ($compromisso->tipo == 'option1') {
+            $compromisso->tipo = 'pontual';
+            $compromisso->data_inicio = $request->input('data_inicio_pontual');
+        } else if($compromisso->tipo == 'option2') {
+            $compromisso->tipo = 'recorrente';
+            $compromisso->data_inicio = $request->input('data_inicio_recorrente');
+            $compromisso->tipo_recorrencia = $request->input('tipo_recorrencia_recorrente');
+        } else {
+            $compromisso->tipo = 'vencimento';
+            $compromisso->data_inicio = $request->input('vencimento');
+            $compromisso->financeiro = $request->input('financeiro');
+            $compromisso->valor = $request->input('valor');
+        }
+
         $compromisso->nome = $request->input('nome');
-        $compromisso->data_inicio = $request->input('data_inicio');
         $compromisso->descricao = $request->input('descricao');
         $compromisso->hora_inicio = $request->input('hora_inicio');
         $compromisso->hora_fim = $request->input('hora_fim');
         $compromisso->repeticao = $request->input('repeticao');
         $compromisso->data_fim = $request->input('data_fim');
-        $compromisso->tipo_recorrencia = $request->input('tipo_recorrencia');
         $compromisso->dias_semana = $request->input('dias_semana');
-        $compromisso->financeiro = $request->input('financeiro');
-        $compromisso->valor = $request->input('valor');
         
 
         $compromisso->save();
