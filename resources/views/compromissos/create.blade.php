@@ -166,46 +166,23 @@
                     </div>
 
                     <div id="divPeriodico" class="col-span-2 selectHidden">
-                        <div class="grid gap-2 mb-1 md:grid-cols-3">
-                            <div>
-                                <input type="checkbox" id="seg"> 
-                                <label for="seg">Segunda</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="ter"> 
-                                <label for="ter">Terça</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="qua"> 
-                                <label for="qua">Quarta</label> <br>
-                            </div>
+                    <div class="grid gap-2 mb-1 md:grid-cols-3">
+                            <div><input type="checkbox" id="seg"> <label for="seg">Segunda</label> </div>
+                            <div><input type="checkbox" id="ter"> <label for="ter">Terça</label> </div>
+                            <div><input type="checkbox" id="quaa"> <label for="qua">Quarta</label> <br> </div>  
                         </div>
                         <div class="grid gap-2 mb-1 md:grid-cols-3">
-                            <div>
-                                <input type="checkbox" id="qui"> 
-                                <label for="qui">Quinta</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="sex"> 
-                                <label for="sex">Sexta</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="sab"> 
-                                <label for="sab">Sábado</label> <br>
-                            </div>
+                            <div> <input type="checkbox" id="qui"> <label for="qui">Quinta</label> </div>
+                            <div> <input type="checkbox" id="sex"> <label for="sex">Sexta</label> </div>
+                            <div> <input type="checkbox" id="sab"> <label for="sab">Sábado</label> <br> </div>
                         </div>
-                        <div>
-                            <input type="checkbox" id="dom"> 
-                            <label for="dom">Domingo</label>
-                        </div>
+                        <div> <input type="checkbox" id="dom"> <label for="dom">Domingo</label> </div>
                     </div>
-
                 </div>
-
-                
-
             </div>
             <!-- Final do Create Recorrente -->
+
+
             <!-- Inicio do Create Vencimento -->
             <div id="option3" class="selectHidden" disabled>
                 <div class="grid gap-6 mb-6 md:grid-cols-2">
@@ -222,51 +199,26 @@
                             <option value="mensa">Mensal</option>
                             <option value="anual">Anual</option>
                             <option value="periodico">Periódico</option>
-                        </select>
-                        
-                        
+                        </select> 
                     </div>
 
-                    
                     <div>
                         <label for="vencimento" class="class=col-span-2 block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vencimento:</label>
                         <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="date" name="vencimento" id="vencimento" required>
-
-                        
                     </div>
+
                     <div id="divPeriodicoVenc">
                         <div class="grid gap-2 mb-1 md:grid-cols-3">
-                            <div>
-                                <input type="checkbox" id="segg"> 
-                                <label for="segg">Segunda</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="terr"> 
-                                <label for="terr">Terça</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="quaa"> 
-                                <label for="quaa">Quarta</label> <br>
-                            </div>
+                            <div><input type="checkbox" id="segg"> <label for="segg">Segunda</label> </div>
+                            <div><input type="checkbox" id="terr"> <label for="terr">Terça</label> </div>
+                            <div><input type="checkbox" id="quaa"> <label for="quaa">Quarta</label> <br> </div>  
                         </div>
                         <div class="grid gap-2 mb-1 md:grid-cols-3">
-                            <div>
-                                <input type="checkbox" id="quii"> 
-                                <label for="quii">Quinta</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="sexx"> 
-                                <label for="sexx">Sexta</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="sabb"> 
-                                <label for="sabb">Sábado</label> <br>
-                            </div>
+                            <div> <input type="checkbox" id="quii"> <label for="quii">Quinta</label> </div>
+                            <div> <input type="checkbox" id="sexx"> <label for="sexx">Sexta</label> </div>
+                            <div> <input type="checkbox" id="sabb"> <label for="sabb">Sábado</label> <br> </div>
                         </div>
-                        <div>
-                            <input type="checkbox" id="domm"> 
-                            <label for="domm">Domingo</label>
-                        </div>
+                        <div> <input type="checkbox" id="domm"> <label for="domm">Domingo</label> </div>
                     </div>
                 </div>
             </div>    
