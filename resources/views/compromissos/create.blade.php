@@ -144,11 +144,12 @@
                     <div class="col-span-2">
                         <label for="tipo_recorrencia" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo de Recorrência</label>
                         <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="tipo_recorrencia_recorrente" id="tipo_recorrencia_recorrente">
-                        <option value=""></option>
-                        <option value="diario">Diário</option>
-                        <option value="semanal">Semanal</option>
-                        <option value="periodico">Periódico</option>
-                        <option value="anual">Anual</option>
+                            <option value="recorrencia"></option>
+                            <option value="diario">Diário</option>
+                            <option value="semanal">Semanal</option>
+                            <option value="mensa">Mensal</option>
+                            <option value="anual">Anual</option>
+                            <option value="periodico">Periódico</option>
                         </select>
                     </div>
                 </div>  
@@ -218,9 +219,9 @@
                             <option value="recorrencia"></option>
                             <option value="diario">Diário</option>
                             <option value="semanal">Semanal</option>
-                            <option value="periodico">Periódico</option>
+                            <option value="mensa">Mensal</option>
                             <option value="anual">Anual</option>
-                            <option value="semrecorrencia">Sem Recorrência</option>
+                            <option value="periodico">Periódico</option>
                         </select>
                         
                         
@@ -277,13 +278,7 @@
             </div>
         </div>
     </form>
-
-
-
-
-
-
-
+    
     
     <div class="grid gap-1 mb-1 md:grid-cols-1">
         <div>    
@@ -383,10 +378,10 @@
 <script>
     // Função para mostrar/ocultar a div "divPeriodico" com base na seleção do campo select
     function toggleDivPeriodico() {
-        var tipo_recorrencia = document.getElementById("tipo_recorrencia");
+        var selecaoRecorrencia = document.getElementById("tipo_recorrencia_recorrente");
         var divPeriodico = document.getElementById("divPeriodico");
 
-        if (tipo_recorrencia.value === "periodico") {
+        if (selecaoRecorrencia.value === "periodico") {
             divPeriodico.style.display = "block";
         } else {
             divPeriodico.style.display = "none";
@@ -394,12 +389,14 @@
     }
 
     // Adicione um ouvinte de evento para chamar a função quando o valor do select mudar
-    var tipo_recorrencia = document.getElementById("tipo_recorrencia");
-    tipo_recorrencia.addEventListener("change", toggleDivPeriodico);
+    var selecaoRecorrencia = document.getElementById("tipo_recorrencia_recorrente");
+    selecaoRecorrencia.addEventListener("change", toggleDivPeriodico);
 
     // Chame a função para configurar o estado inicial
     toggleDivPeriodico();
 </script>
+
+
 
 <script>
     // Função para mostrar/ocultar a div "divPeriodicoVenc" com base na seleção do campo select
