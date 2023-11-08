@@ -82,7 +82,7 @@
             </style>
 
             <div class="container">
-                <button style="border-radius:100px" id="botao-direita">+</button>
+                <button style="border-radius:100px" id="botao-direita" class="botao" type="reset" value="Limpar">+</button>
             </div>
 
             <div>    
@@ -315,8 +315,8 @@
                 var yearFromURL = getParameterByName('year');
                 var monthFromURL = getParameterByName('month');
                 var dayFromURL = getParameterByName('day');
-                var compromisso = getParameterByName('compromisso');
-                console.log (compromisso);
+                //var compromisso = getParameterByName('compromisso');
+                //console.log (compromisso);
 
                 // Verifica se os valores foram passados e exibe-os nos elementos spans
                 if (yearFromURL) {
@@ -347,20 +347,14 @@
             <div class="tabela">
                 <div style="text-align: center">
                     <table>
-                    
-                    <tr>
-                        <td id="col1">Evento 1</td>
-                        <td id="col2">12:00</td>
-                    </tr>
-                    <tr>
-                        <td id="col1">Evento 2</td>
-                        <td id="col2">17:00</td>
-                    </tr>
-                    <tr>
-                        <td id="col1">Evento 3</td>
-                        <td id="col2">21:00</td>
-                    </tr>
-                    <!-- Adicione mais linhas com dados conforme necessário -->
+                    @if ($compromissos != null)
+                        @foreach ($compromissos as $u)
+                            <tr> 
+                                <td class="px-6 py-4">{{ $u->nome }}</td>
+                                <td class="px-6 py-4">{{ $u->hora_inicio }}</td>
+                            </tr>
+                        @endforeach
+                    @endif
                     </table>
                 </div>
             </div>

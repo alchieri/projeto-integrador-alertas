@@ -28,11 +28,16 @@ class CompromissoController extends Controller
     public function create(Request $request)
     {
         $year = $request->query('year');
-        $mouth = $request->query('mouth');
+        $month = $request->query('month');
         $day = $request->query('day');
-        $dataInicio = $year-$mouth-$day;
-        $compromisso = Compromisso::query()->where('data_inicio', $dataInicio);
-        return view('compromissos.create')->with('year', $year)->with('mouth', $mouth)->with('day', $day);
+        $dataInicio = $year."-".$month."-".$day;
+        if($request->query('day') == null) {
+            $compromisso = null;
+            return view('compromissos.create')->with('year', $year)->with('month', $month)->with('day', $day)->with('compromissos', $compromisso);
+        } else{
+            $compromisso = Compromisso::query()->where('data_inicio', '=', $dataInicio)->get();
+            return view('compromissos.create')->with('year', $year)->with('month', $month)->with('day', $day)->with('compromissos', $compromisso);
+        }
     }
 
     /**
