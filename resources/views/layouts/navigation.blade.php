@@ -6,7 +6,8 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('inicio') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                        <!-- <x-application-logo class="block h-9 w-auto fill-current text-gray-800" /> -->
+                        <img style="width: 60px; height: 60px; margin-top: 30px" src="https://img.freepik.com/vetores-gratis/agenda-estilo-simples-de-calendario_78370-1550.jpg?w=826&t=st=1699481316~exp=1699481916~hmac=00997b1330f8f27bc3858128aa13a7d4add0af212ea48dbef5f97c1612779307" alt="">
                     </a>
                 </div>
 
@@ -62,6 +63,9 @@
                         </form>
                     </x-slot>
                 </x-dropdown>
+
+                <div class="user-avatar"></div>   <!-- avatar usuário -->
+
             </div>
 
             <!-- Hamburger -->
@@ -85,13 +89,13 @@
         </div>
 
         <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200">
+        <div  id="usuario" class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
                 <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
             </div>
 
-            <div class="mt-3 space-y-1">
+            <div  class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
@@ -108,5 +112,17 @@
                 </form>
             </div>
         </div>
+
+            <style>
+                .user-avatar {
+                    width: 60px; 
+                    height: 60px; 
+                    border: 1px solid darkgrey;
+                    border-radius: 50%;
+                    margin-left: 10px;
+                    margin-top: 30px;
+                    }
+            </style>
+
     </div>
 </nav>

@@ -12,6 +12,8 @@
         <header>
             <h1>SENAC - ALERTA</h1>
         </header>
+
+
         <nav>
             <ul>
                 <li><a href="/">Início</a></li>
@@ -22,6 +24,8 @@
         <div class="content">
             @yield('content')
         </div>
+
+        
         <footer>
             <div>
                 <p>Aprendendo Laravel Framework</p>

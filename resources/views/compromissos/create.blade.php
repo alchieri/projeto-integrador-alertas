@@ -10,6 +10,7 @@
         @csrf
         <div>
             <style>
+                
                 .container {
                     position: relative;
                     width: auto;
@@ -21,7 +22,9 @@
                     border-radius: 10px;
                     padding: 5px;
                     margin: 0;
-                    
+                    width: auto;
+                    height: 90%;
+ 
                 }
 
                 table {
@@ -223,8 +226,8 @@
                 </div>
             </div>    
             <!-- Final do Create Vencimento -->
-
-            <div>
+                
+            <div> <br>
                 <button class="botao" type="submit" value="Salvar">Salvar</button>
                 <button class="botao" type="reset" value="Limpar">Cancelar</button>
             </div>
@@ -232,7 +235,7 @@
     </form>
     
     
-    <div class="grid gap-1 mb-1 md:grid-cols-1">
+    <div id="coluna2" class="grid gap-1 mb-1 md:grid-cols-1">
         <div>    
             <!-- SEGUNDA COLUNA DA PAGINA-->
             
