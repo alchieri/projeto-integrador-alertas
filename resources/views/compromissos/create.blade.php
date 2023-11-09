@@ -82,6 +82,32 @@
                 .selectHidden {
                     display : none;
                 }
+
+                tr .spnTooltip {
+                    z-index:10;display:none; 
+                    padding:14px 20px;
+                    margin-top:-30px; 
+                    margin-left:28px;
+                    width:300px; line-height:16px;
+                }
+                tr:hover .spnTooltip{
+                    display:inline; 
+                    position:absolute;
+                    color:#111827;
+                    border:1px solid #d1d5db; 
+                    border-radius: 10px;
+                    background:#f9fafb;
+                    text-align: left;
+                }
+                .callout {
+                    z-index:20;
+                    position:absolute;
+                    top:30px;
+                    border:0;
+                    left:-12px;
+                }
+
+
             </style>
 
             <div class="container">
@@ -293,13 +319,39 @@
                 }
                 
             </script>
-            
+
             <div class="tabela">
                 <div style="text-align: center">
                     <table>
                     @if ($compromissos != null)
                         @foreach ($compromissos as $u)
-                            <tr> 
+                            <tr class="spnDetails"> 
+                                <td class="px-6 py-4 spnDetails">{{ $u->nome }} <span class="spnTooltip">  
+
+                                    <strong>{{ strtoupper($u->tipo) }}</strong><br />
+                                    <strong>Descrição:</strong> {{ $u->descricao }} <br>
+                                    <strong>Hora Início:</strong> {{ $u->hora_inicio }} <br>
+                                    <strong>Hora fim:</strong> {{ $u->hora_fim }} <br>
+                                    <strong>Data fim:</strong> {{ date("d-m-Y", strtotime($u->data_fim)) }} <br>
+                                    <strong>Valor: R$ </strong> {{ $u->valor }} <br>
+
+                                    </span></td>
+                                    
+                                <td class="px-6 py-4 spnDetails">{{ $u->hora_inicio }}</td>
+                            </tr>
+                        @endforeach
+                    @endif
+                    </table>
+                </div>
+            </div>
+
+
+            <!-- <div class="tabela">
+                <div style="text-align: center">
+                    <table>
+                    @if ($compromissos != null)
+                        @foreach ($compromissos as $u)
+                            <tr class="RowComment"> 
                                 <td class="px-6 py-4">{{ $u->nome }}</td>
                                 <td class="px-6 py-4">{{ $u->hora_inicio }}</td>
                             </tr>
@@ -307,7 +359,7 @@
                     @endif
                     </table>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
                 
