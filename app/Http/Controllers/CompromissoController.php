@@ -37,7 +37,7 @@ class CompromissoController extends Controller
         } else{
             $compromisso = Compromisso::query()
                 ->where('data_inicio', '=', $dataInicio)
-                ->where('tipo', '=', 'pontual')
+                // ->where('tipo', '=', 'pontual')
                 ->orWhere('data_inicio','<=', $dataInicio)
                 ->where('data_fim', '>=', $dataInicio)->get();
             return view('compromissos.create')->with('year', $year)->with('month', $month)->with('day', $day)->with('compromissos', $compromisso);

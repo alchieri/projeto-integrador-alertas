@@ -325,20 +325,43 @@
                     <table>
                     @if ($compromissos != null)
                         @foreach ($compromissos as $u)
+                            
+                               
+
                             <tr class="spnDetails"> 
+
                                 <td class="px-6 py-4 spnDetails">{{ $u->nome }} <span class="spnTooltip">  
 
                                     <strong>{{ strtoupper($u->tipo) }}</strong><br />
-                                    <strong>Descrição:</strong> {{ $u->descricao }} <br>
-                                    <strong>Hora Início:</strong> {{ $u->hora_inicio }} <br>
-                                    <strong>Hora fim:</strong> {{ $u->hora_fim }} <br>
-                                    <strong>Data fim:</strong> {{ date("d-m-Y", strtotime($u->data_fim)) }} <br>
-                                    <strong>Valor: R$ </strong> {{ $u->valor }} <br>
-
+                                    @if ($u->descricao != null ) 
+                                        <strong>Descrição:</strong> {{ $u->descricao }} <br>
+                                    @endif
+                                    @if ($u->hora_inicio != null ) 
+                                        <strong>Hora Início:</strong> {{ $u->hora_inicio }} <br>
+                                    @endif
+                                    @if ($u->hora_fim != null ) 
+                                        <strong>Hora fim:</strong> {{ $u->hora_fim }} <br>
+                                    @endif
+                                    @if ($u->data_inicio != null ) 
+                                        <strong>Data fim:</strong> {{ date("d-m-Y", strtotime($u->data_inicio)) }} <br>
+                                    @endif
+                                    @if ($u->data_fim != null ) 
+                                        <strong>Data fim:</strong> {{ date("d-m-Y", strtotime($u->data_fim)) }} <br>
+                                    @endif
+                                    @if ($u->valor != null ) 
+                                        <strong>Valor: R$ </strong> {{ $u->valor }} <br>
+                                    @endif
                                     </span></td>
-                                    
-                                <td class="px-6 py-4 spnDetails">{{ $u->hora_inicio }}</td>
+                                    @if ($u->tipo === "vencimento" ) 
+                                    <td class="px-6 py-4 spnDetails"> {{ $u->valor }} </td>
+                                    @else <td class="px-6 py-4 spnDetails"> {{ $u->hora_inicio }} </td>
+                                    @endif
                             </tr>
+                            
+                            
+                            
+                              
+                            <!-- <td class="px-6 py-4 spnDetails"> {{ $u->hora_inicio }} </td> -->
                         @endforeach
                     @endif
                     </table>
