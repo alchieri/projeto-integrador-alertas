@@ -39,60 +39,51 @@
     
     <div class="tabela">
         <div class="" style="text-align: center ">
-            <table class="">
+            <table class="ontem">
             
             <tr class="">
-                <td id="col1">Evento 1</td>
-                <td id="col2">12:00</td>
+                @if ($compromissosOntem !=null)
+                    @foreach ($compromissosOntem as $u)
+                        <strong>Descrição: </strong> {{ $u->descricao }}
+                        <strong>Hora Início:</strong> {{ $u->hora_inicio }} <br>
+                    @endforeach
+                @endif
             </tr>
-            <tr>
-                <td id="col1">Evento 2</td>
-                <td id="col2">17:00</td>
-            </tr>
-            <tr>
-                <td id="col1">Evento 3</td>
-                <td id="col2">21:00</td>
-            </tr>
+            
             <!-- Adicione mais linhas com dados conforme necessário -->
             </table>
         </div>
     </div>
     <div class="tabela">
-        <div class="" style="text-align: center ">
+        <div class="hoje" style="text-align: center ">
             <table class="">
             
             <tr class="">
-                <td id="col1">Evento 1</td>
-                <td id="col2">12:00</td>
+                @if ($compromissosHoje !=null)
+                    @foreach ($compromissosHoje as $u)
+                        <strong>Descrição: </strong> {{ $u->descricao }}
+                        <strong>Hora Início:</strong> {{ $u->hora_inicio }} <br>
+                    @endforeach
+                @endif
             </tr>
-            <tr>
-                <td id="col1">Evento 2</td>
-                <td id="col2">17:00</td>
-            </tr>
-            <tr>
-                <td id="col1">Evento 3</td>
-                <td id="col2">21:00</td>
-            </tr>
+            
             <!-- Adicione mais linhas com dados conforme necessário -->
             </table>
         </div>
     </div>
     <div class="tabela">
-        <div class="" style="text-align: center ">
+        <div class="amanha" style="text-align: center ">
             <table class="">
             
             <tr class="">
-                <td id="col1">Evento 1</td>
-                <td id="col2">12:00</td>
+                @if ($compromissosAmanha !=null)
+                    @foreach ($compromissosAmanha as $u)
+                        <strong>Descrição: </strong> {{ $u->descricao }}
+                        <strong>Hora Início:</strong> {{ $u->hora_inicio }} <br>
+                    @endforeach
+                @endif
             </tr>
-            <tr>
-                <td id="col1">Evento 2</td>
-                <td id="col2">17:00</td>
-            </tr>
-            <tr>
-                <td id="col1">Evento 3</td>
-                <td id="col2">21:00</td>
-            </tr>
+            
             <!-- Adicione mais linhas com dados conforme necessário -->
             </table>
         </div>

@@ -332,7 +332,7 @@
 
                                 <td class="px-6 py-4 spnDetails">{{ $u->nome }} <span class="spnTooltip">  
 
-                                    <strong>{{ strtoupper($u->tipo) }}</strong><br />
+                                        <strong>{{ strtoupper($u->tipo) }}</strong><br />
                                     @if ($u->descricao != null ) 
                                         <strong>Descrição:</strong> {{ $u->descricao }} <br>
                                     @endif
@@ -340,13 +340,13 @@
                                         <strong>Hora Início:</strong> {{ $u->hora_inicio }} <br>
                                     @endif
                                     @if ($u->hora_fim != null ) 
-                                        <strong>Hora fim:</strong> {{ $u->hora_fim }} <br>
+                                        <strong>Hora Fim:</strong> {{ $u->hora_fim }} <br>
                                     @endif
                                     @if ($u->data_inicio != null ) 
-                                        <strong>Data fim:</strong> {{ date("d-m-Y", strtotime($u->data_inicio)) }} <br>
+                                        <strong>Data Início:</strong> {{ date("d-m-Y", strtotime($u->data_inicio)) }} <br>
                                     @endif
                                     @if ($u->data_fim != null ) 
-                                        <strong>Data fim:</strong> {{ date("d-m-Y", strtotime($u->data_fim)) }} <br>
+                                        <strong>Data Fim:</strong> {{ date("d-m-Y", strtotime($u->data_fim)) }} <br>
                                     @endif
                                     @if ($u->valor != null ) 
                                         <strong>Valor: R$ </strong> {{ $u->valor }} <br>
