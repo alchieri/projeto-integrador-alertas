@@ -4,6 +4,7 @@ use App\Http\Controllers\CompromissoController;
 use App\Http\Controllers\ConfigNotificacaoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\InicioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,7 +26,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/inicio', function () {
+// Route::controller(InicioController::class)->group(function () {
+//    Route::get('/inicio', 'inicio');
+// })->middleware(['auth', 'verified'])->name('inicio');
+
+Route::get('/inicio', [InicioController::class, 'inicio'], function () {
     return view('inicio');
 })->middleware(['auth', 'verified'])->name('inicio');
 
