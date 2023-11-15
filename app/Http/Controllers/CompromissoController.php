@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Compromisso;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CompromissoController extends Controller
 {
@@ -49,14 +50,19 @@ class CompromissoController extends Controller
      */
     public function store(Request $request)
     {
+        $year = $request->query('year');
+        $month = $request->query('month');
+        $day = $request->query('day');
         $compromisso = new Compromisso();
 
         $compromisso->tipo = $request->input('tipo');
 
         if ($compromisso->tipo == 'option1') {
+            $compromisso->hora_inicio = $request->input('hora_inicio_pontual');
             $compromisso->tipo = 'pontual';
             $compromisso->data_inicio = $request->input('data_inicio_pontual');
-        } else if($compromisso->tipo == 'option2') {
+        } elseif ($compromisso->tipo == 'option2') {
+            $compromisso->hora_inicio = $request->input('hora_inicio_recorrente');
             $compromisso->tipo = 'recorrente';
             $compromisso->data_inicio = $request->input('data_inicio_recorrente');
             $compromisso->tipo_recorrencia = $request->input('tipo_recorrencia_recorrente');
@@ -66,26 +72,66 @@ class CompromissoController extends Controller
             $compromisso->financeiro = $request->input('financeiro');
             $compromisso->valor = $request->input('valor');
         }
-
+        
         $compromisso->nome = $request->input('nome');
         $compromisso->descricao = $request->input('descricao');
-        $compromisso->hora_inicio = $request->input('hora_inicio');
+    
         $compromisso->hora_fim = $request->input('hora_fim');
         $compromisso->repeticao = $request->input('repeticao');
         $compromisso->data_fim = $request->input('data_fim');
         $compromisso->dias_semana = $request->input('dias_semana');
         
+        if  ($compromisso->hora_fim == null) {
 
-        $compromisso->save();
+            $compromisso->hora_fim = $compromisso->hora_inicio;        
+        } 
+        
+        if ($compromisso->data_fim == null) {
+            $compromisso->data_fim = $compromisso->data_inicio;
+        }
+        
 
-        $compromisso = Compromisso::all();
-        return view('compromissos.index')->with('compromissos', $compromisso)
-            ->with('msg', 'Compromisso cadastrado com sucesso!');            
+        $compromissoValidacao = Compromisso::query()
+            ->whereIn('tipo', ['pontual' , 'recorrente'])
+            ->where('data_inicio', '>=' , $compromisso->data_inicio)
+            ->where('data_inicio', '<=' , $compromisso->data_fim)
+            ->where('hora_inicio', '>=', $compromisso->hora_inicio)
+            ->where('hora_inicio', '<=', $compromisso->hora_fim)
+            ->get();
+
+        if ($compromissoValidacao->count() > 0) {
+            $validator = Validator::make(['confirm' => 'required|boolean',], ['confirm' => 'Já existe um compromisso nessa data e horário. Você deseja salvar o compromisso mesmo assim?',]);
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator);
+            }
+            if ($request->input('confirm')) {
+                // Salvar o compromisso            
+                $compromisso->save();
+                return view('compromissos.index')->with('compromissos', $compromisso)
+                    ->with('msg', 'Compromisso cadastrado com sucesso!');
+            } else {
+                // Cancelar a operação
+                return redirect()->back();
+            }
+        } else {
+            if ($compromisso->tipo == 'recorrente' && $compromisso->tipo_recorrencia == 'recorrencia') {
+                    echo '<script type="text/javascript">alert("Selecione uma recorrência! "); history.go(-1);</script>';
+            } else {
+                $compromisso->save();
+                
+                $compromisso = Compromisso::all();
+                return view('compromissos.index')->with('compromissos', $compromisso)
+                    ->with('msg', 'Compromisso cadastrado com sucesso!');
+            }
+        }
     }
 
-    /**
-     * Display the specified resource.
-     */
+    
+    
+   
+
+
+    
     public function show(string $id)
     {
         $compromisso = Compromisso::find($id);
