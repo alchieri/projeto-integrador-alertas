@@ -5,3 +5,7 @@
 @fullcalendar/daygrid/main.css;
 @fullcalendar/timegrid/main.css;
 @fullcalendar/list/main.css;
+
+.invisivel{
+    display: none;
+}

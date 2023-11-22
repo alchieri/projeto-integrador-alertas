@@ -327,12 +327,17 @@
                         @foreach ($compromissos as $u)
 
                             <tr class="spnDetails"> 
-
-                                <div>
-                                <td class="px-6 py-4 spnDetails"><a href="" onclick="atualizarCompromisso()"> {{ $u->descricao }}</a> <span class="spnTooltip">
-                                    
-                                </div>
-
+                                <td class="invisivel">
+                                    {{ strtoupper($u->tipo) }} 
+                                </td>
+                                <td class="invisivel">
+                                    {{ $u->nome }} 
+                                </td>
+                                <td class="invisivel">
+                                    {{ $u->descricao }} 
+                                </td>
+                                <td class="px-6 py-4 spnDetails">{{ $u->descricao }} 
+                                    <span class="spnTooltip">
                                         <strong>{{ strtoupper($u->tipo) }}</strong><br />
                                     @if ($u->descricao != null ) 
                                         <strong>Descrição:</strong> {{ $u->descricao }} <br>
@@ -352,32 +357,29 @@
                                     @if ($u->valor != null ) 
                                         <strong>Valor: R$ </strong> {{ $u->valor }} <br>
                                     @endif
-                                    </span></td>
-                                    @if ($u->tipo === "vencimento" ) 
+                                    </span>
+                                </td>
+                                @if ($u->tipo === "vencimento" ) 
                                     <td class="px-6 py-4 spnDetails"> {{ $u->valor }} </td>
-                                    @else <td class="px-6 py-4 spnDetails"> {{ $u->hora_inicio }} </td>
-                                    @endif
+                                @else 
+                                    <td class="px-6 py-4 spnDetails"> {{ $u->hora_inicio }} </td>
+                                @endif
                             </tr>
-                            
-                            
-                            
-                              
                             <!-- <td class="px-6 py-4 spnDetails"> {{ $u->hora_inicio }} </td> -->
                         @endforeach
                     @endif
                     </table>
                 </div>
             </div>
-
         </div>
     </div>
-                
 </div>
-<script>
-    const select = document.getElementById('selectTipo');
-    const divs = document.querySelectorAll('div[id^="option"]');
 
-    select.addEventListener('change', function(){
+<script>
+    function selectTipo() {
+        const select = document.getElementById('selectTipo');
+        const divs = document.querySelectorAll('div[id^="option"]');
+    
         divs.forEach(div => {
             div.classList.add('selectHidden');
         });
@@ -386,7 +388,14 @@
         if  (selectedOption){
             selectedOption.classList.remove('selectHidden');
         }
-    });
+    }
+
+    // Adicione um ouvinte de evento para chamar a função quando o valor do select mudar
+    var selecaoTipo = document.getElementById("selectTipo");
+    selecaoTipo.addEventListener("change", selectTipo);
+
+    // Chame a função para configurar o estado inicial
+    selectTipo();
 </script>
 
 <!-- tipo_recorrencia -->
@@ -436,20 +445,42 @@
 </script>
 
 <script>
-        const table = document.querySelector('table_compromissos');
-        alert (table);
-        const rows = table.querySelectorAll('tr');
+    document.addEventListener("DOMContentLoaded", function () {
+        var tabelaCompromissos = document.getElementById("table_compromissos");
+        var detalheTipo = document.getElementById("selectTipo");
+        var detalheNome = document.getElementById("nome");
+        var detalheDescricao = document.getElementById("descricao");
+        var valueTipo = "";
 
-        
-        for (const row of rows){
-            row.addEventListener('click', (event)=>{
-                const compromisso = event.target.querySelector('rd:nth-child(1)');
-                document.querySelectorAll('#nome').value = compromisso.nome;
-            })
-        }
+        tabelaCompromissos.addEventListener("click", function (event) {
+            if (event.target.tagName === "TD") {
+                var linha = event.target.parentNode;
+                var cells = linha.getElementsByTagName("td");
 
+                var camposInvisiveis = linha.querySelectorAll(".invisivel");
+                camposInvisiveis.forEach(function(campo, index) {
+                    switch (index) {
+                        case 0:
+                            valueTipo = campo.textContent || campo.innerText;
+                            break;
+                    }
+                });
+
+                // If para preencher o campo tipo
+                if (valueTipo.trim() === "PONTUAL") {
+                    detalheTipo.options[1].selected = true;
+                } else if (valueTipo.trim() === "RECORRENTE") {
+                    detalheTipo.options[2].selected = true;
+                } else {
+                    detalheTipo.options[3].selected = true;
+                }
+                selectTipo();
+
+                detalheNome.value = cells[1].innerText.trim();
+                detalheDescricao.value = cells[2].innerText.trim();
+            }
+        });
+    });
 </script>
-
-
 
 @endsection
