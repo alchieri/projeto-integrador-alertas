@@ -90,14 +90,21 @@ class CompromissoController extends Controller
             $compromisso->data_fim = $compromisso->data_inicio;
         }
         
-
-        $compromissoValidacao = Compromisso::query()
-            ->whereIn('tipo', ['pontual' , 'recorrente'])
-            ->where('data_inicio', '>=' , $compromisso->data_inicio)
-            ->where('data_inicio', '<=' , $compromisso->data_fim)
-            ->where('hora_inicio', '>=', $compromisso->hora_inicio)
-            ->where('hora_inicio', '<=', $compromisso->hora_fim)
-            ->get();
+        if ($compromisso->tipo == 'vencimento') {
+            $compromissoValidacao = Compromisso::query()
+                ->where('tipo', '=', $compromisso->tipo)
+                ->where('data_inicio', '>=' , $compromisso->data_inicio)
+                ->where('data_inicio', '<=' , $compromisso->data_fim)
+                ->get();
+        } else {
+            $compromissoValidacao = Compromisso::query()
+                ->whereIn('tipo', ['pontual' , 'recorrente'])
+                ->where('data_inicio', '>=' , $compromisso->data_inicio)
+                ->where('data_inicio', '<=' , $compromisso->data_fim)
+                ->where('hora_inicio', '>=', $compromisso->hora_inicio)
+                ->where('hora_inicio', '<=', $compromisso->hora_fim)
+                ->get();
+        }
 
         if ($compromissoValidacao->count() > 0) {
             $validator = Validator::make(['confirm' => 'required|boolean',], ['confirm' => 'Já existe um compromisso nessa data e horário. Você deseja salvar o compromisso mesmo assim?',]);
