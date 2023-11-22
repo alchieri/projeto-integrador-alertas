@@ -322,15 +322,16 @@
 
             <div class="tabela">
                 <div style="text-align: center">
-                    <table>
+                    <table id="table_compromissos" name="table_compromissos">
                     @if ($compromissos != null)
                         @foreach ($compromissos as $u)
-                            
-                               
 
                             <tr class="spnDetails"> 
 
-                                <td class="px-6 py-4 spnDetails">{{ $u->nome }} <span class="spnTooltip">  
+                                <div>
+                                <td class="px-6 py-4 spnDetails"><a href="" onclick="atualizarCompromisso()"> {{ $u->descricao }}</a> <span class="spnTooltip">
+                                    
+                                </div>
 
                                         <strong>{{ strtoupper($u->tipo) }}</strong><br />
                                     @if ($u->descricao != null ) 
@@ -368,21 +369,6 @@
                 </div>
             </div>
 
-
-            <!-- <div class="tabela">
-                <div style="text-align: center">
-                    <table>
-                    @if ($compromissos != null)
-                        @foreach ($compromissos as $u)
-                            <tr class="RowComment"> 
-                                <td class="px-6 py-4">{{ $u->nome }}</td>
-                                <td class="px-6 py-4">{{ $u->hora_inicio }}</td>
-                            </tr>
-                        @endforeach
-                    @endif
-                    </table>
-                </div>
-            </div> -->
         </div>
     </div>
                 
@@ -448,5 +434,22 @@
     // Chame a função para configurar o estado inicial
     toggleDivPeriodicoVenc();
 </script>
+
+<script>
+        const table = document.querySelector('table_compromissos');
+        alert (table);
+        const rows = table.querySelectorAll('tr');
+
+        
+        for (const row of rows){
+            row.addEventListener('click', (event)=>{
+                const compromisso = event.target.querySelector('rd:nth-child(1)');
+                document.querySelectorAll('#nome').value = compromisso.nome;
+            })
+        }
+
+</script>
+
+
 
 @endsection

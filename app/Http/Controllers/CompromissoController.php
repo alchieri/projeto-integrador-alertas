@@ -125,12 +125,6 @@ class CompromissoController extends Controller
             }
         }
     }
-
-    
-    
-   
-
-
     
     public function show(string $id)
     {
