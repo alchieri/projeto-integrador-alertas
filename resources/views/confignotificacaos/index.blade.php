@@ -2,7 +2,7 @@
 @section('content')
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">Configurações de Notificações Cadastradas</h2>
     <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
-    <a href="/confignotificacaos/create" class="text-gray-900 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Cadastrar</a>
+    <a href="/confignotificacaos/create" class="botao">Cadastrar</a>
     <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
     @if(!isset($confignotificacaos))
         <h3 style="color: red;">Nenhum registro encontrado!</h3>
@@ -41,4 +41,19 @@
             alert("{{$msg}}");
         </script>
     @endif
+    <style>
+        .botao {
+            background-color: #3f3f43;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+
+        }
+
+        .botao:hover {
+            background-color: #201f29;
+        }
+    </style>
 @endsection
