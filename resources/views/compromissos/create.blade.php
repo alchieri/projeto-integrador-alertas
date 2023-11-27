@@ -322,16 +322,22 @@
 
             <div class="tabela">
                 <div style="text-align: center">
-                    <table>
+                    <table id="table_compromissos" name="table_compromissos">
                     @if ($compromissos != null)
                         @foreach ($compromissos as $u)
-                            
-                               
 
                             <tr class="spnDetails"> 
-
-                                <td class="px-6 py-4 spnDetails">{{ $u->nome }} <span class="spnTooltip">  
-
+                                <td class="invisivel">
+                                    {{ strtoupper($u->tipo) }} 
+                                </td>
+                                <td class="invisivel">
+                                    {{ $u->nome }} 
+                                </td>
+                                <td class="invisivel">
+                                    {{ $u->descricao }} 
+                                </td>
+                                <td class="px-6 py-4 spnDetails">{{ $u->descricao }} 
+                                    <span class="spnTooltip">
                                         <strong>{{ strtoupper($u->tipo) }}</strong><br />
                                     @if ($u->descricao != null ) 
                                         <strong>Descrição:</strong> {{ $u->descricao }} <br>
@@ -351,47 +357,29 @@
                                     @if ($u->valor != null ) 
                                         <strong>Valor: R$ </strong> {{ $u->valor }} <br>
                                     @endif
-                                    </span></td>
-                                    @if ($u->tipo === "vencimento" ) 
+                                    </span>
+                                </td>
+                                @if ($u->tipo === "vencimento" ) 
                                     <td class="px-6 py-4 spnDetails"> {{ $u->valor }} </td>
-                                    @else <td class="px-6 py-4 spnDetails"> {{ $u->hora_inicio }} </td>
-                                    @endif
+                                @else 
+                                    <td class="px-6 py-4 spnDetails"> {{ $u->hora_inicio }} </td>
+                                @endif
                             </tr>
-                            
-                            
-                            
-                              
                             <!-- <td class="px-6 py-4 spnDetails"> {{ $u->hora_inicio }} </td> -->
                         @endforeach
                     @endif
                     </table>
                 </div>
             </div>
-
-
-            <!-- <div class="tabela">
-                <div style="text-align: center">
-                    <table>
-                    @if ($compromissos != null)
-                        @foreach ($compromissos as $u)
-                            <tr class="RowComment"> 
-                                <td class="px-6 py-4">{{ $u->nome }}</td>
-                                <td class="px-6 py-4">{{ $u->hora_inicio }}</td>
-                            </tr>
-                        @endforeach
-                    @endif
-                    </table>
-                </div>
-            </div> -->
         </div>
     </div>
-                
 </div>
-<script>
-    const select = document.getElementById('selectTipo');
-    const divs = document.querySelectorAll('div[id^="option"]');
 
-    select.addEventListener('change', function(){
+<script>
+    function selectTipo() {
+        const select = document.getElementById('selectTipo');
+        const divs = document.querySelectorAll('div[id^="option"]');
+    
         divs.forEach(div => {
             div.classList.add('selectHidden');
         });
@@ -400,7 +388,14 @@
         if  (selectedOption){
             selectedOption.classList.remove('selectHidden');
         }
-    });
+    }
+
+    // Adicione um ouvinte de evento para chamar a função quando o valor do select mudar
+    var selecaoTipo = document.getElementById("selectTipo");
+    selecaoTipo.addEventListener("change", selectTipo);
+
+    // Chame a função para configurar o estado inicial
+    selectTipo();
 </script>
 
 <!-- tipo_recorrencia -->
@@ -447,6 +442,45 @@
 
     // Chame a função para configurar o estado inicial
     toggleDivPeriodicoVenc();
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var tabelaCompromissos = document.getElementById("table_compromissos");
+        var detalheTipo = document.getElementById("selectTipo");
+        var detalheNome = document.getElementById("nome");
+        var detalheDescricao = document.getElementById("descricao");
+        var valueTipo = "";
+
+        tabelaCompromissos.addEventListener("click", function (event) {
+            if (event.target.tagName === "TD") {
+                var linha = event.target.parentNode;
+                var cells = linha.getElementsByTagName("td");
+
+                var camposInvisiveis = linha.querySelectorAll(".invisivel");
+                camposInvisiveis.forEach(function(campo, index) {
+                    switch (index) {
+                        case 0:
+                            valueTipo = campo.textContent || campo.innerText;
+                            break;
+                    }
+                });
+
+                // If para preencher o campo tipo
+                if (valueTipo.trim() === "PONTUAL") {
+                    detalheTipo.options[1].selected = true;
+                } else if (valueTipo.trim() === "RECORRENTE") {
+                    detalheTipo.options[2].selected = true;
+                } else {
+                    detalheTipo.options[3].selected = true;
+                }
+                selectTipo();
+
+                detalheNome.value = cells[1].innerText.trim();
+                detalheDescricao.value = cells[2].innerText.trim();
+            }
+        });
+    });
 </script>
 
 @endsection
