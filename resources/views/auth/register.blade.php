@@ -43,7 +43,7 @@
         <div class="mt-4">
             <x-input-label for="link_avatar" :value="__('Link imagem de perfil')" />
 
-            <x-text-input id="link_avatar" class="block mt-1 w-full" type="text"/>
+            <x-text-input name="link_avatar" id="link_avatar" class="block mt-1 w-full" type="text"/>
         </div>
 
         <div class="flex items-center justify-end mt-4">

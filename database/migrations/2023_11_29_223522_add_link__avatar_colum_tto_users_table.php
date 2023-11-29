@@ -11,7 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('link_avatar', 500)->nullable();
+        });
     }
 
     /**

@@ -63,9 +63,7 @@
                         </form>
                     </x-slot>
                 </x-dropdown>
-
-                <div class="user-avatar"></div>   <!-- avatar usuário -->
-
+                <img src="{{ Auth::user()->link_avatar }}" alt="{{ Auth::user()->name }}" class="user-avatar" />    
             </div>
 
             <!-- Hamburger -->
