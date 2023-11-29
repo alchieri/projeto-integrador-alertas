@@ -20,7 +20,7 @@
     }
     
     .calendar-header {
-      background-color: #3498db;
+      background-color: #3f3f43;
       color: #fff;
       padding: 10px;
       display: flex;
@@ -36,6 +36,9 @@
       
     }
     .calendar-table {
+      font-size: 30px;
+      font-weight: bold;
+      color: black;
       width: 100%;
       border-collapse: collapse;
       height: 600px;
@@ -57,6 +60,7 @@
       margin: 10px;
     }
     .weekday-header {
+      font-size: 20px;
       width: calc(100% / 7);
     }
   </style>
@@ -81,7 +85,7 @@
             <th class="weekday-header">Domingo</th>
             <th class="weekday-header">Segunda</th>
             <th class="weekday-header">Terça</th>
-            <th class "weekday-header">Quarta</th>
+            <th class="weekday-header">Quarta</th>
             <th class="weekday-header">Quinta</th>
             <th class="weekday-header">Sexta</th>
             <th class="weekday-header">Sábado</th>
