@@ -136,6 +136,10 @@
                 <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="descricao" id="descricao" required>
             </div>
 
+            <div class="invisivel">
+                <input name="id" id="id"></input>
+            </div>
+
             <!-- Inicio do Create Pontual -->
             <div id="option1" class="selectHidden">
                 <div class="grid gap-6 mb-6 md:grid-cols-4">
@@ -336,6 +340,9 @@
                                 <td class="invisivel">
                                     {{ $u->descricao }} 
                                 </td>
+                                <td class="invisivel">
+                                    {{ $u->id }}
+                                </td>
                                 <td class="px-6 py-4 spnDetails">{{ $u->descricao }} 
                                     <span class="spnTooltip">
                                         <strong>{{ strtoupper($u->tipo) }}</strong><br />
@@ -450,6 +457,7 @@
         var detalheTipo = document.getElementById("selectTipo");
         var detalheNome = document.getElementById("nome");
         var detalheDescricao = document.getElementById("descricao");
+        var detalheId = document.getElementById("id");
         var valueTipo = "";
 
         tabelaCompromissos.addEventListener("click", function (event) {
@@ -475,9 +483,11 @@
                     detalheTipo.options[3].selected = true;
                 }
                 selectTipo();
-
+                
                 detalheNome.value = cells[1].innerText.trim();
                 detalheDescricao.value = cells[2].innerText.trim();
+                detalheId.value = cells[3].innerText.trim();
+
             }
         });
     });
