@@ -493,4 +493,24 @@
     });
 </script>
 
+<script>
+    // Obtem o id do compromisso.
+    var id = document.getElementById('id').value;
+
+    // Cria uma nova solicitação HTTP
+    const request = new XMLHttpRequest();
+    request.open('DELETE', `/compromissos/${id}`);
+
+    // Envia a solicitação
+    request.send();
+
+    // Escuta a resposta da solicitação
+    request.onload = () => {
+        // Se a solicitação foi bem-sucedida (200), atualiza a interface dos compromissos.
+        if (request.status === 200) {
+            alert('Compromisso excluído com sucesso!');
+        }
+    };
+</script>
+
 @endsection
