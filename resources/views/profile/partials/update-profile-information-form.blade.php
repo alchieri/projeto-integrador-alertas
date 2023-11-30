@@ -1,11 +1,11 @@
 <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900">
-            {{ __('Profile Information') }}
+            {{ __('Informações de Perfil') }}
         </h2>
 
         <p class="mt-1 text-sm text-gray-600">
-            {{ __("Update your account's profile information and email address.") }}
+            {{ __("Atualize as informações, nome, endereço de e-mail e link de imagem de perfil.") }}
         </p>
     </header>
 
@@ -46,7 +46,13 @@
                 </div>
             @endif
         </div>
-
+<br>
+        </div>
+            <x-input-label for="link_avatar" :value="__('Link do Avatar')" />
+            <x-text-input id="link_avatar" name="link_avatar" type="text" class="mt-1 block w-full" :value="old('link_avatar', $user->link_avatar)" required autofocus autocomplete="link_avatar" />
+            <x-input-error class="mt-2" :messages="$errors->get('link_avatar')" />
+        <div>
+<br>
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 
