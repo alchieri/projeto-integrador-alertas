@@ -258,8 +258,11 @@
             <!-- Final do Create Vencimento -->
                 
             <div> <br>
-                <button class="botao" type="submit" value="Salvar">Salvar</button>
-                <button class="botao" type="reset" value="Limpar">Cancelar</button>
+                <div id="selecaoBotao">
+                    <button class="botao" type="submit" value="Salvar">Salvar</button>
+                    <button id="botaoCancelar" class="botao" type="reset" value="Limpar">Cancelar</button>
+                    <button id="botaoExcluir" class="botao" name="submit" type="delete" value="Limpar" style= "display: none">Excluir</button>
+                </div>
             </div>
         </div>
     </form>
@@ -427,8 +430,7 @@
     // Chame a função para configurar o estado inicial
     toggleDivPeriodico();
 </script>
-
-
+ 
 
 <script>
     // Função para mostrar/ocultar a div "divPeriodicoVenc" com base na seleção do campo select
@@ -458,14 +460,18 @@
         var detalheNome = document.getElementById("nome");
         var detalheDescricao = document.getElementById("descricao");
         var detalheId = document.getElementById("id");
+        var botaoCancelar = document.getElementById("botaoCancelar");
+        var botaoExcluir = document.getElementById("botaoExcluir");
         var valueTipo = "";
 
         tabelaCompromissos.addEventListener("click", function (event) {
             if (event.target.tagName === "TD") {
                 var linha = event.target.parentNode;
                 var cells = linha.getElementsByTagName("td");
-
                 var camposInvisiveis = linha.querySelectorAll(".invisivel");
+                botaoCancelar.style.display ="none";
+                botaoExcluir.style.display ="inline";
+
                 camposInvisiveis.forEach(function(campo, index) {
                     switch (index) {
                         case 0:
@@ -487,10 +493,29 @@
                 detalheNome.value = cells[1].innerText.trim();
                 detalheDescricao.value = cells[2].innerText.trim();
                 detalheId.value = cells[3].innerText.trim();
-
             }
         });
     });
+</script>
+
+<script>
+    // Obtem o id do compromisso.
+    var id = document.getElementById('id').value;
+
+    // Cria uma nova solicitação HTTP
+    const request = new XMLHttpRequest();
+    request.open('DELETE', `/compromissos/${id}`);
+
+    // Envia a solicitação
+    request.send();
+
+    // Escuta a resposta da solicitação
+    request.onload = () => {
+        // Se a solicitação foi bem-sucedida (200), atualiza a interface dos compromissos.
+        if (request.status === 200) {
+            alert('Compromisso excluído com sucesso!');
+        }
+    };
 </script>
 
 @endsection
