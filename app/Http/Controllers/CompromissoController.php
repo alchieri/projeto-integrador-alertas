@@ -110,31 +110,36 @@ class CompromissoController extends Controller
                     ->get();
             }
 
+            
+
+
+
+            
             if ($compromissoValidacao->count() > 0) {
-                $validator = Validator::make(['confirm' => 'required|boolean',], ['confirm' => 'Já existe um compromisso nessa data e horário. Você deseja salvar o compromisso mesmo assim?',]);
-                if ($validator->fails()) {
-                    return redirect()->back()->withErrors($validator);
-                }
-                if ($request->input('confirm')) {
-                    // Salvar o compromisso            
-                    $compromisso->save();
-                    return view('compromissos.index')->with('compromissos', $compromisso)
-                        ->with('msg', 'Compromisso cadastrado com sucesso!');
-                } else {
-                    // Cancelar a operação
-                    return redirect()->back();
-                }
+                // Exibir caixa de diálogo se houver compromisso de validação
+                echo '<script type="text/javascript">
+                        if (window.confirm("Já existe um compromisso nessa data! \n\nDeseja confirmar o compromisso?")) {
+                            
+                            
+
+                        } else {
+                            
+                            history.go(-1);
+                        }
+                    </script>';
             } else {
                 if ($compromisso->tipo == 'recorrente' && $compromisso->tipo_recorrencia == 'recorrencia') {
-                        echo '<script type="text/javascript">alert("Selecione uma recorrência! "); history.go(-1);</script>';
+                    echo '<script type="text/javascript">alert("Selecione uma recorrência! "); history.go(-1);</script>';
                 } else {
                     $compromisso->save();
-                    
+
                     $compromisso = Compromisso::all();
                     return view('compromissos.index')->with('compromissos', $compromisso)
                         ->with('msg', 'Compromisso cadastrado com sucesso!');
                 }
             }
+
+
         }
     }
 
