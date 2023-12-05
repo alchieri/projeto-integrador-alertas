@@ -274,7 +274,12 @@
                                 <td class="px-6 py-4 spnDetails"> {{ $u->hora_inicio }} </td>
                                 @endif
                                 <td id="excluirCompromisso">
-                                    <button onclick="excluir()" for="excluir" id="excluir" name="excluir" type="submit" value="delete">Excluir</button>
+                                    <button form="delete-form" type="submit">Excluir</button>
+                                    <form method="POST" class="form" id="delete-form" 
+                                        action="{{ route('compromissos.destroy', $u->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach

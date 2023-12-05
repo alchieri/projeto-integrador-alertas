@@ -209,10 +209,8 @@ class CompromissoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Compromisso $compromisso)
     {
-        $compromisso = Compromisso::find($id);
-
         $compromisso->delete();
 
         $compromisso = Compromisso::all();
