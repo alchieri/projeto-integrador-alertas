@@ -49,10 +49,10 @@ class CompromissoController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+    {   
         $id = $request->input('id');
         if($id != null){
-            $this->update($request, $id);
+           return $this->update($request, $id);
         } else {
             $year = $request->query('year');
             $month = $request->query('month');
@@ -168,7 +168,7 @@ class CompromissoController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, String $id)
-    {  
+    {
         $compromisso = Compromisso::find($id);
         $compromisso->tipo = $request->input('tipo');
 
