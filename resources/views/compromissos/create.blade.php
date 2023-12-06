@@ -5,113 +5,11 @@
 
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">Cadastro de Novo Compromisso</h2>
     <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
-
     <form class="form" method="POST" action="{{ route('compromissos.store') }}" novalidate>
         @csrf
         <div>
-            <style>
-                
-                .container {
-                    position: relative;
-                    width: auto;
-                    border: 1px;
-                    padding: 10px;
-                }
-                .tabela {
-                    border: 1px solid #ccc;
-                    border-radius: 10px;
-                    padding: 5px;
-                    margin: 0;
-                    width: auto;
-                    height: 90%;
- 
-                }
-
-                table {
-                    width: 100%;
-                    margin: 0 auto; /* Centraliza a tabela horizontalmente na div */
-                }
-
-                th {
-                    padding: 10px;
-                    text-align: center;
-                }
-                
-                #col2 {
-                    padding: 5px;
-                    text-align: right;
-                }
-                #col1 {
-                    padding: 5px;
-                    text-align: left;
-                }
-
-                #botao-direita {
-                    position: absolute;
-                    right: 0;
-                    bottom: 0;
-                    background-color: #3f3f43;
-                    color: white;
-                    padding: 10px 16px;
-                    border: none;
-                    cursor: pointer;
-                    border-radius: 100px;
-                }
-                #botao-direita:hover {
-                    background-color: #201f29;
-                }
-
-                .botao {
-                    background-color: #3f3f43;
-                    color: white;
-                    padding: 10px 20px;
-                    border: none;
-                    cursor: pointer;
-                    border-radius: 10px;
-
-                }
-
-                h2 {
-                    font-weight: bold;
-                }
-
-                .botao:hover {
-                    background-color: #201f29;
-                }
-
-                .selectHidden {
-                    display : none;
-                }
-
-                tr .spnTooltip {
-                    z-index:10;display:none; 
-                    padding:14px 20px;
-                    margin-top:-30px; 
-                    margin-left:28px;
-                    width:300px; line-height:16px;
-                }
-                tr:hover .spnTooltip{
-                    display:inline; 
-                    position:absolute;
-                    color:#111827;
-                    border:1px solid #d1d5db; 
-                    border-radius: 10px;
-                    background:#f9fafb;
-                    text-align: left;
-                }
-                .callout {
-                    z-index:20;
-                    position:absolute;
-                    top:30px;
-                    border:0;
-                    left:-12px;
-                }
-
-
-            </style>
-
             <div class="container">
-                <button style="border-radius:100px" id="botao-direita" class="botao" type="reset" value="Limpar">+</button>
+                <button id="botao-direita" class="botao" type="reset" value="Limpar">+</button>
             </div>
 
             <div>    
@@ -261,7 +159,7 @@
                 <div id="selecaoBotao">
                     <button class="botao" type="submit" value="Salvar">Salvar</button>
                     <button id="botaoCancelar" class="botao" type="reset" value="Limpar">Cancelar</button>
-                    <button id="botaoExcluir" class="botao" name="submit" type="delete" value="Limpar" style= "display: none">Excluir</button>
+                    <button id="botaoExcluir" class="botao" name="delete" type="submit" value="Delete" style= "display: none">Excluir</button>
                 </div>
             </div>
         </div>
@@ -332,8 +230,8 @@
                     <table id="table_compromissos" name="table_compromissos">
                     @if ($compromissos != null)
                         @foreach ($compromissos as $u)
+                        <tr class="spnDetails">
 
-                            <tr class="spnDetails"> 
                                 <td class="invisivel">
                                     {{ strtoupper($u->tipo) }} 
                                 </td>
@@ -346,39 +244,48 @@
                                 <td class="invisivel">
                                     {{ $u->id }}
                                 </td>
-                                <td class="px-6 py-4 spnDetails">{{ $u->descricao }} 
+
+                                <td class="px-6 py-4 spnDetails">{{ $u->descricao }}
                                     <span class="spnTooltip">
                                         <strong>{{ strtoupper($u->tipo) }}</strong><br />
-                                    @if ($u->descricao != null ) 
+                                        @if ($u->descricao != null )
                                         <strong>Descrição:</strong> {{ $u->descricao }} <br>
                                     @endif
                                     @if ($u->hora_inicio != null ) 
-                                        <strong>Hora Início:</strong> {{ $u->hora_inicio }} <br>
+                                    <strong>Hora Início:</strong> {{ $u->hora_inicio }} <br>
                                     @endif
                                     @if ($u->hora_fim != null ) 
                                         <strong>Hora Fim:</strong> {{ $u->hora_fim }} <br>
-                                    @endif
-                                    @if ($u->data_inicio != null ) 
+                                        @endif
+                                        @if ($u->data_inicio != null ) 
                                         <strong>Data Início:</strong> {{ date("d-m-Y", strtotime($u->data_inicio)) }} <br>
-                                    @endif
-                                    @if ($u->data_fim != null ) 
+                                        @endif
+                                        @if ($u->data_fim != null ) 
                                         <strong>Data Fim:</strong> {{ date("d-m-Y", strtotime($u->data_fim)) }} <br>
-                                    @endif
-                                    @if ($u->valor != null ) 
+                                        @endif
+                                        @if ($u->valor != null ) 
                                         <strong>Valor: R$ </strong> {{ $u->valor }} <br>
-                                    @endif
+                                        @endif
                                     </span>
                                 </td>
                                 @if ($u->tipo === "vencimento" ) 
-                                    <td class="px-6 py-4 spnDetails"> {{ $u->valor }} </td>
+                                <td class="px-6 py-4 spnDetails"> {{ $u->valor }} </td>
                                 @else 
-                                    <td class="px-6 py-4 spnDetails"> {{ $u->hora_inicio }} </td>
+                                <td class="px-6 py-4 spnDetails"> {{ $u->hora_inicio }} </td>
                                 @endif
+                                <td id="excluirCompromisso">
+                                    <button form="delete-form" type="submit">Excluir</button>
+                                    <form method="POST" class="form" id="delete-form" 
+                                        action="{{ route('compromissos.destroy', $u->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
+                                </td>
                             </tr>
-                            <!-- <td class="px-6 py-4 spnDetails"> {{ $u->hora_inicio }} </td> -->
-                        @endforeach
-                    @endif
-                    </table>
+                            @endforeach
+                            
+                            @endif
+                        </table>
                 </div>
             </div>
         </div>
@@ -499,23 +406,28 @@
 </script>
 
 <script>
-    // Obtem o id do compromisso.
-    var id = document.getElementById('id').value;
+    function excluir(){
+    const nome = document.querySelectorAll("excluir");
+    
+        //btn.addEventListener("click", function(){
+        // Obtem o id do compromisso.
+        var id = document.getElementById('id').value;
 
-    // Cria uma nova solicitação HTTP
-    const request = new XMLHttpRequest();
-    request.open('DELETE', `/compromissos/${id}`);
+        // Cria uma nova solicitação HTTP
+        const request = new XMLHttpRequest();
+        request.open('DELETE', `/compromissos/${id}`);
 
-    // Envia a solicitação
-    request.send();
+        // Envia a solicitação
+        request.send();
 
-    // Escuta a resposta da solicitação
-    request.onload = () => {
+        // Escuta a resposta da solicitação
+        request.onload = () => {
         // Se a solicitação foi bem-sucedida (200), atualiza a interface dos compromissos.
         if (request.status === 200) {
             alert('Compromisso excluído com sucesso!');
-        }
-    };
+            }
+        };
+    }
 </script>
 
 @endsection

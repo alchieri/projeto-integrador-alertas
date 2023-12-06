@@ -44,6 +44,8 @@ Route::resource('usuarios', UsuarioController::class);
 Route::resource('confignotificacaos', ConfigNotificacaoController::class);
 Route::resource('compromissos', CompromissoController::class);
 
+Route::delete('/compromissos/{id}', 'CompromissoController@destroy');
+
 
 
 require __DIR__.'/auth.php';
