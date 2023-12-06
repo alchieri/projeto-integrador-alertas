@@ -119,15 +119,25 @@ class CompromissoController extends Controller
                 // Exibir caixa de diálogo se houver compromisso de validação
                 echo '<script type="text/javascript">
                         if (window.confirm("Já existe um compromisso nessa data! \n\nDeseja confirmar o compromisso?")) {
-                            
-                            
-
+                            // Confirmar compromisso
+                            ';
+            
+                // Salvando o compromisso
+                $compromisso->save();
+            
+                // Recarregando a lista de compromissos
+                $compromissos = Compromisso::all();
+            
+                // Retornando a view com a lista de compromissos e uma mensagem
+                echo '
+                            window.location.href = "' . route('compromissos.index') . '";
                         } else {
-                            
+                            // Voltar uma página no histórico
                             history.go(-1);
                         }
                     </script>';
-            } else {
+            }
+            else {
                 if ($compromisso->tipo == 'recorrente' && $compromisso->tipo_recorrencia == 'recorrencia') {
                     echo '<script type="text/javascript">alert("Selecione uma recorrência! "); history.go(-1);</script>';
                 } else {
