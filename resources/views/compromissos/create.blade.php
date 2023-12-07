@@ -60,7 +60,7 @@
             </div> 
             <!-- Final do Create Pontual -->
             <!-- Inicio do Create Recorrente -->
-            <div id="option2" class="selectHidden">
+            <div id="option2" class="selectHidden" disabled>
                 
                 <div class="grid gap-6 mb-6 md:grid-cols-4">
                     <div>
@@ -97,7 +97,7 @@
                     </div>
 
                     <div id="divPeriodico" class="col-span-2 selectHidden">
-                    <div class="grid gap-2 mb-1 md:grid-cols-3">
+                        <div class="grid gap-2 mb-1 md:grid-cols-3">
                             <div><input type="checkbox" id="seg"> <label for="seg">Segunda</label> </div>
                             <div><input type="checkbox" id="ter"> <label for="ter">Terça</label> </div>
                             <div><input type="checkbox" id="quaa"> <label for="qua">Quarta</label> <br> </div>  
@@ -124,7 +124,7 @@
                     <div >
                     <label for="tipo_recorrencia" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo de Recorrência</label>
                         <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="tipo_recorrencia" id="selecaorecorrenciaVenc">
-                            <option value="recorrencia"></option>
+                            <option value="recorrencia_venc">Sem recorrência</option>
                             <option value="diario">Diário</option>
                             <option value="semanal">Semanal</option>
                             <option value="mensa">Mensal</option>
@@ -132,13 +132,20 @@
                             <option value="periodico">Periódico</option>
                         </select> 
                     </div>
-
+                </div>
+                <div class="grid gap-6 mb-6 md:grid-cols-4">
                     <div>
-                        <label for="vencimento" class="class=col-span-2 block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vencimento:</label>
+                        <label for="vencimento" class="mb-2 text-sm font-medium text-gray-900 dark:text-white">Vencimento:</label>
                         <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="date" name="vencimento" id="vencimento" required>
                     </div>
+                
+                        <div class="selectHidden" id="ultimo_venc">
+                        <label for="ultimo_vencimento" class="mb-2 text-sm font-medium text-gray-900 dark:text-white">Ultimo Venc.:</label>
+                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="date" name="ultimo_vencimento" id="ultimo_vencimento" required>
+                        
+                    </div>
 
-                    <div id="divPeriodicoVenc">
+                    <div id="divPeriodicoVenc" class="col-span-2 selectHidden">
                         <div class="grid gap-2 mb-1 md:grid-cols-3">
                             <div><input type="checkbox" id="segg"> <label for="segg">Segunda</label> </div>
                             <div><input type="checkbox" id="terr"> <label for="terr">Terça</label> </div>
@@ -152,6 +159,7 @@
                         <div> <input type="checkbox" id="domm"> <label for="domm">Domingo</label> </div>
                     </div>
                 </div>
+                
             </div>    
             <!-- Final do Create Vencimento -->
                 
@@ -338,6 +346,27 @@
     toggleDivPeriodico();
 </script>
  
+<script>
+    // Função para mostrar/ocultar a div "ultimo_venc" com base na seleção do campo select
+    function toggleUltimoVenc() {
+        var selecaoRecorrenciaVenc = document.getElementById("selecaorecorrenciaVenc");
+        var divUltimoVenc = document.getElementById("ultimo_venc");
+
+        if (selecaoRecorrenciaVenc.value != "Sem recorrência") {
+            divUltimoVenc.style.display = "block";
+        } else {
+            divUltimoVenc.style.display = "none";
+        }
+    }
+
+    // Adicione um ouvinte de evento para chamar a função quando o valor do select mudar
+    var selecaoRecorrenciaVenc = document.getElementById("selecaorecorrenciaVenc");
+    selecaoRecorrenciaVenc.addEventListener("change", toggleUltimoVenc);
+
+    // Chame a função para configurar o estado inicial
+    toggleUltimoVenc();
+</script>
+
 
 <script>
     // Função para mostrar/ocultar a div "divPeriodicoVenc" com base na seleção do campo select
