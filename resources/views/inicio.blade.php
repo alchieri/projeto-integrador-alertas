@@ -41,12 +41,21 @@
         <div class="" style="text-align: center ">
             <table class="ontem">
             
-            <tr class="">
+            <tr class="inicio_css">
                 @if ($compromissosOntem !=null)
                     @foreach ($compromissosOntem as $u)
+                    
+                    @if ($u->hora_inicio != null)
                         <strong>Descrição: </strong> {{ $u->descricao }}
-                        <strong>Hora Início:</strong> {{ $u->hora_inicio }} <br>
+                        <strong>Hora Início:</strong> {{ $u->hora_inicio }} 
+                     @else 
+                        <strong>Descrição: </strong> {{ $u->descricao }}
+                        <strong>Vencimento: </strong> {{ $u->valor }} 
+                    
+
+                    @endif
                     @endforeach
+                
                 @endif
             </tr>
             
@@ -58,13 +67,20 @@
         <div class="hoje" style="text-align: center ">
             <table class="">
             
-            <tr class="">
-                @if ($compromissosHoje !=null)
+            <tr class="inicio_css">
+                @if ($compromissosHoje != null)
                     @foreach ($compromissosHoje as $u)
+                    @if($u->hora_inicio != null)
                         <strong>Descrição: </strong> {{ $u->descricao }}
-                        <strong>Hora Início:</strong> {{ $u->hora_inicio }} <br>
+                        <strong>Hora Início:</strong> {{ $u->hora_inicio }} 
+                    @else
+                        <strong>Descrição: </strong> {{ $u->descricao }}
+                        <strong>Vencimento: </strong> {{ $u->valor }} 
+                    
+                    @endif
                     @endforeach
                 @endif
+                
             </tr>
             
             <!-- Adicione mais linhas com dados conforme necessário -->
@@ -75,11 +91,17 @@
         <div class="amanha" style="text-align: center ">
             <table class="">
             
-            <tr class="">
+            <tr class="inicio_css">
                 @if ($compromissosAmanha !=null)
                     @foreach ($compromissosAmanha as $u)
-                        <strong>Descrição: </strong> {{ $u->descricao }}
-                        <strong>Hora Início:</strong> {{ $u->hora_inicio }} <br>
+                        @if($u->hora_inicio != null)
+                            <strong>Descrição: </strong> {{ $u->descricao }}
+                            <strong>Hora Início:</strong> {{ $u->hora_inicio }} 
+                         @else
+                            <strong>Descrição: </strong> {{ $u->descricao }}
+                            <strong>Vencimento: </strong> {{ $u->valor }} 
+                        
+                        @endif
                     @endforeach
                 @endif
             </tr>
