@@ -137,6 +137,11 @@
                         <label for="vencimento" class="class=col-span-2 block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vencimento:</label>
                         <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="date" name="vencimento" id="vencimento" required>
                     </div>
+                    <div id="vencimento_fim">
+                        <label for="data_fim" class="class=col-span-2 block mb-2 text-sm font-medium text-gray-900 dark:text-white">Data Fim:</label>
+                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="date" name="data_fim" id="data_fim" required>
+                    </div>
+                    
 
                     <div id="divPeriodicoVenc">
                         <div class="grid gap-2 mb-1 md:grid-cols-3">
@@ -159,7 +164,6 @@
                 <div id="selecaoBotao">
                     <button class="botao" type="submit" value="Salvar">Salvar</button>
                     <button id="botaoCancelar" class="botao" type="reset" value="Limpar">Cancelar</button>
-                    <button id="botaoExcluir" class="botao" name="delete" type="submit" value="Delete" style= "display: none">Excluir</button>
                 </div>
             </div>
         </div>
@@ -274,15 +278,15 @@
                                 <td class="px-6 py-4 spnDetails"> {{ $u->hora_inicio }} </td>
                                 @endif
                                 <td id="excluirCompromisso">
-                                    <button form="delete-form" type="submit">Excluir</button>
-                                    <form method="POST" class="form" id="delete-form" 
-                                        action="{{ route('compromissos.destroy', $u->id) }}">
-                                        @csrf
-                                        @method('DELETE')
-                                    </form>
+                                    <button form="delete-form" type="submit" value="Excluir">Excluir</button>
                                 </td>
                             </tr>
                             @endforeach
+                            <form method="POST" class="form" id="delete-form" 
+                                action="{{ route('compromissos.destroy', $u->id) }}">
+                                @csrf
+                                @method('DELETE')
+                            </form>
                             
                             @endif
                         </table>
@@ -322,10 +326,12 @@
     function toggleDivPeriodico() {
         var selecaoRecorrencia = document.getElementById("tipo_recorrencia_recorrente");
         var divPeriodico = document.getElementById("divPeriodico");
+        var vencimento_fim = document.getElementById("vencimento_fim");
 
         if (selecaoRecorrencia.value === "periodico") {
             divPeriodico.style.display = "block";
-        } else {
+
+        } else {    
             divPeriodico.style.display = "none";
         }
     }
@@ -367,8 +373,6 @@
         var detalheNome = document.getElementById("nome");
         var detalheDescricao = document.getElementById("descricao");
         var detalheId = document.getElementById("id");
-        var botaoCancelar = document.getElementById("botaoCancelar");
-        var botaoExcluir = document.getElementById("botaoExcluir");
         var valueTipo = "";
 
         tabelaCompromissos.addEventListener("click", function (event) {
@@ -376,8 +380,6 @@
                 var linha = event.target.parentNode;
                 var cells = linha.getElementsByTagName("td");
                 var camposInvisiveis = linha.querySelectorAll(".invisivel");
-                botaoCancelar.style.display ="none";
-                botaoExcluir.style.display ="inline";
 
                 camposInvisiveis.forEach(function(campo, index) {
                     switch (index) {
