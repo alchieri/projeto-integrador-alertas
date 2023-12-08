@@ -6,6 +6,8 @@ use App\Models\Compromisso;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
+use function Laravel\Prompts\alert;
+
 class CompromissoController extends Controller
 {
     public function __construct() {
@@ -65,16 +67,19 @@ class CompromissoController extends Controller
                 $compromisso->hora_inicio = $request->input('hora_inicio_pontual');
                 $compromisso->tipo = 'pontual';
                 $compromisso->data_inicio = $request->input('data_inicio_pontual');
+                $compromisso->data_fim = $request->input('data_fim');
             } elseif ($compromisso->tipo == 'option2') {
                 $compromisso->hora_inicio = $request->input('hora_inicio_recorrente');
                 $compromisso->tipo = 'recorrente';
                 $compromisso->data_inicio = $request->input('data_inicio_recorrente');
                 $compromisso->tipo_recorrencia = $request->input('tipo_recorrencia_recorrente');
+                $compromisso->data_fim = $request->input('data_fim');
             } else {
                 $compromisso->tipo = 'vencimento';
                 $compromisso->data_inicio = $request->input('vencimento');
                 $compromisso->financeiro = $request->input('financeiro');
                 $compromisso->valor = $request->input('valor');
+                $compromisso->data_fim = $request->input('ultimo_vencimento');
             }
             
             $compromisso->nome = $request->input('nome');
@@ -82,54 +87,22 @@ class CompromissoController extends Controller
         
             $compromisso->hora_fim = $request->input('hora_fim');
             $compromisso->repeticao = $request->input('repeticao');
-            $compromisso->data_fim = $request->input('data_fim');
+            
             $compromisso->dias_semana = $request->input('dias_semana');
             
             if  ($compromisso->hora_fim == null) {
 
                 $compromisso->hora_fim = $compromisso->hora_inicio;        
-            } 
-            
-            if ($compromisso->data_fim == null) {
-                $compromisso->data_fim = $compromisso->data_inicio;
             }
-            
+
             if ($compromisso->tipo == 'vencimento') {
-                $compromissoValidacao = Compromisso::query()
-                    ->where('tipo', '=', $compromisso->tipo)
-                    ->where('data_inicio', '>=' , $compromisso->data_inicio)
-                    ->where('data_inicio', '<=' , $compromisso->data_fim)
-                    ->get();
-            } else {
-                $compromissoValidacao = Compromisso::query()
-                    ->whereIn('tipo', ['pontual' , 'recorrente'])
-                    ->where('data_inicio', '>=' , $compromisso->data_inicio)
-                    ->where('data_inicio', '<=' , $compromisso->data_fim)
-                    ->where('hora_inicio', '>=', $compromisso->hora_inicio)
-                    ->where('hora_inicio', '<=', $compromisso->hora_fim)
-                    ->get();
-            }
 
-            
-
-
-
-            
-            if ($compromissoValidacao->count() > 0) {
-                // Exibir caixa de diálogo se houver compromisso de validação
-                echo '<script type="text/javascript">
-                        if (window.confirm("Já existe um compromisso nessa data! \n\nDeseja confirmar o compromisso?")) {
-                            
-                            
-
-                        } else {
-                            
-                            history.go(-1);
-                        }
-                    </script>';
-            } else {
-                if ($compromisso->tipo == 'recorrente' && $compromisso->tipo_recorrencia == 'recorrencia') {
-                    echo '<script type="text/javascript">alert("Selecione uma recorrência! "); history.go(-1);</script>';
+                if ($compromisso->valor <= "0") {
+                    echo '<script type="text/javascript">alert("Selecione um valor! "); history.go(-1);</script>';
+                } else if ($compromisso->selecaorecorrenciaVenc == 'recorrencia_venc') {
+                    $compromisso->data_fim = $compromisso->data_inicio;
+                } else if ($compromisso->selecaorecorrenciaVenc != 'recorrencia_venc' && $compromisso->data_fim == null) {
+                    echo '<script type="text/javascript">alert("Selecione uma data fim! "); history.go(-1);</script>';
                 } else {
                     $compromisso->save();
 
@@ -139,7 +112,32 @@ class CompromissoController extends Controller
                 }
             }
 
+            if ($compromisso->tipo == 'recorrente') {
 
+                if ($compromisso->data_fim == null) {
+                    echo '<script type="text/javascript">alert("Selecione uma data fim! "); history.go(-1);</script>';
+                } else if ($compromisso->tipo_recorrencia == 'recorrencia') {
+                    echo '<script type="text/javascript">alert("Selecione uma recorrência! "); history.go(-1);</script>';
+                } else {
+                    $compromissoValidacao = Compromisso::query()
+                        ->whereIn('tipo', ['pontual' , 'recorrente'])
+                        ->where('data_inicio', '>=' , $compromisso->data_inicio)
+                        ->where('data_inicio', '<=' , $compromisso->data_fim)
+                        ->where('hora_inicio', '>=' , $compromisso->hora_inicio)
+                        ->where('hora_inicio', '<=' , $compromisso->hora_fim)
+                        ->get();
+
+                    if ($compromissoValidacao->count() > 0) { 
+                        echo '<script type="text/javascript">alert("Já existe um compromisso nessa data e hora! \n\nPor favor selecione outra data ou hora! "); history.go(-1);</script>';
+                    } else {
+                        $compromisso->save();
+                        $compromisso = Compromisso::all();
+                        return view('compromissos.index')->with('compromissos', $compromisso)
+                            ->with('msg', 'Compromisso cadastrado com sucesso!');
+                        
+                    }
+                }
+            }
         }
     }
 
