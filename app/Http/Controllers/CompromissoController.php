@@ -95,29 +95,16 @@ class CompromissoController extends Controller
                 $compromisso->hora_fim = $compromisso->hora_inicio;        
             }
 
-            if ($compromisso->tipo == 'vencimento') {
+            if ($compromisso->tipo == 'pontual') {
+                if  ($compromisso->data_fim == null) {
 
-                if ($compromisso->valor <= "0") {
-                    echo '<script type="text/javascript">alert("Selecione um valor! "); history.go(-1);</script>';
-                } else if ($compromisso->selecaorecorrenciaVenc == 'recorrencia_venc') {
                     $compromisso->data_fim = $compromisso->data_inicio;
-                } else if ($compromisso->selecaorecorrenciaVenc != 'recorrencia_venc' && $compromisso->data_fim == null) {
-                    echo '<script type="text/javascript">alert("Selecione uma data fim! "); history.go(-1);</script>';
-                } else {
-                    $compromisso->save();
-
-                    $compromisso = Compromisso::all();
-                    return view('compromissos.index')->with('compromissos', $compromisso)
-                        ->with('msg', 'Compromisso cadastrado com sucesso!');
                 }
-            }
-
-            if ($compromisso->tipo == 'recorrente') {
-
-                if ($compromisso->data_fim == null) {
-                    echo '<script type="text/javascript">alert("Selecione uma data fim! "); history.go(-1);</script>';
-                } else if ($compromisso->tipo_recorrencia == 'recorrencia') {
-                    echo '<script type="text/javascript">alert("Selecione uma recorrência! "); history.go(-1);</script>';
+                if ($compromisso->nome == null || 
+                    $compromisso->descricao == null || 
+                    $compromisso->hora_inicio == null || 
+                    $compromisso->data_inicio_pontual == null) {
+                    echo '<script type="text/javascript">alert("Certifique-se de preencher os campos importantes! "); history.go(-1);</script>';
                 } else {
                     $compromissoValidacao = Compromisso::query()
                         ->whereIn('tipo', ['pontual' , 'recorrente'])
@@ -138,6 +125,68 @@ class CompromissoController extends Controller
                     }
                 }
             }
+            
+            if ($compromisso->tipo == 'recorrente') {
+
+                if ($compromisso->hora_inicio_recorrente != null) {
+                    if ($compromisso->hora_fim_recorrente == null) {
+                    $compromisso->hora_fim_recorrente = $compromisso->hora_inicio_recorrente;
+                    }
+                } else {
+                    if ($compromisso->nome == null || 
+                    $compromisso->descricao == null || 
+                    $compromisso->hora_inicio_recorrente == null ||
+                    $compromisso->data_inicio_recorrente == null ||
+                    $compromisso->data_fim == null ||
+                    $compromisso->tipo_recorrencia_recorrente == null 
+                    ) {
+                    echo '<script type="text/javascript">alert("Certifique-se de preencher os campos importantes! "); history.go(-1);</script>';
+                    } else {
+                        $compromissoValidacao = Compromisso::query()
+                            ->whereIn('tipo', ['pontual' , 'recorrente'])
+                            ->where('data_inicio', '>=' , $compromisso->data_inicio)
+                            ->where('data_inicio', '<=' , $compromisso->data_fim)
+                            ->where('hora_inicio', '>=' , $compromisso->hora_inicio)
+                            ->where('hora_inicio', '<=' , $compromisso->hora_fim)
+                            ->get();
+
+                        if ($compromissoValidacao->count() > 0) { 
+                            echo '<script type="text/javascript">alert("Já existe um compromisso nessa data e hora! \n\nPor favor selecione outra data ou hora! "); history.go(-1);</script>';
+                        } else {
+                            $compromisso->save();
+                            $compromisso = Compromisso::all();
+                            return view('compromissos.index')->with('compromissos', $compromisso)
+                                ->with('msg', 'Compromisso cadastrado com sucesso!');
+                            
+                        }
+                    }    
+                }
+            }
+            
+            if ($compromisso->tipo == 'vencimento') {
+
+                if ($compromisso->nome == null || 
+                    $compromisso->descricao == null || 
+                    $compromisso->valor == null ||
+                    $compromisso->vencimento == null ||
+                    $compromisso->ultimo_vencimento == null ||
+                    $compromisso->selecaorecorrenciaVenc == null 
+                    ) {
+                    echo '<script type="text/javascript">alert("Certifique-se de preencher os campos importantes! "); history.go(-1);</script>';
+                    
+                } else if ($compromisso->selecaorecorrenciaVenc == 'sem_recorrencia') {
+                    $compromisso->data_fim = $compromisso->data_inicio;
+                } else if ($compromisso->selecaorecorrenciaVenc != 'sem_recorrencia' && $compromisso->data_fim == null) {
+                    echo '<script type="text/javascript">alert("Certifique-se de preencher os campos importantes! "); history.go(-1);</script>';
+                } else {
+                    $compromisso->save();
+
+                    $compromisso = Compromisso::all();
+                    return view('compromissos.index')->with('compromissos', $compromisso)
+                        ->with('msg', 'Compromisso cadastrado com sucesso!');
+                }
+            }
+
         }
     }
 

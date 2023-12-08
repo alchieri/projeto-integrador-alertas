@@ -69,7 +69,7 @@
                     </div>
                     <div>
                         <label for="hora_fim" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora Fim:</label>
-                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="time" name="hora_fim" id="hora_fim" required>
+                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="time" name="hora_fim_recorrente" id="hora_fim_recorrente" required>
                     </div>
 
                     <div class="col-span-2">
@@ -124,7 +124,7 @@
                     <div >
                     <label for="tipo_recorrencia" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo de Recorrência</label>
                         <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="tipo_recorrencia" id="selecaorecorrenciaVenc">
-                            <option value="recorrencia_venc">Sem recorrência</option>
+                            <option value="sem_recorrencia">Sem recorrência</option>
                             <option value="diario">Diário</option>
                             <option value="semanal">Semanal</option>
                             <option value="mensa">Mensal</option>
