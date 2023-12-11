@@ -281,4 +281,13 @@ class CompromissoController extends Controller
             ->with('msg', 'Compromisso excluído com sucesso!');
     }
 
+    // public function destroy(Compromisso $compromisso)
+    // {
+    //     $compromisso->delete();
+
+    //     $compromisso = Compromisso::all();
+    //     return view('compromissos.index')->with('compromissos', $compromisso)
+    //         ->with('msg', 'Compromisso excluído com sucesso!');
+    // }
+
 }

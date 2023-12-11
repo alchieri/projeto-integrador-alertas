@@ -248,7 +248,7 @@
                                 <td class="invisivel">
                                     {{ $u->descricao }} 
                                 </td>
-                                <td class="invisivel">
+                                <td class="invisivel" id="id">
                                     {{ $u->id }}
                                 </td>
 
@@ -284,14 +284,13 @@
                                     <button form="delete-form" type="submit" value="Excluir">Excluir</button>
                                 </td>
                             </tr>
-                            @endforeach
                             <form method="POST" class="form" id="delete-form" 
                                 action="{{ route('compromissos.destroy', $u->id) }}">
                                 @csrf
                                 @method('DELETE')
                             </form>
-                            
-                            @endif
+                            @endforeach
+                        @endif
                         </table>
                 </div>
             </div>
