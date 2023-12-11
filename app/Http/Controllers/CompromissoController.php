@@ -105,6 +105,10 @@ class CompromissoController extends Controller
                     $compromisso->hora_inicio == null || 
                     $compromisso->data_inicio_pontual == null) {
                     echo '<script type="text/javascript">alert("Certifique-se de preencher os campos importantes! "); history.go(-1);</script>';
+                    $compromisso->save();
+                    $compromisso = Compromisso::all();
+                    return view('compromissos.index')->with('compromissos', $compromisso)
+                                ->with('msg', 'Compromisso cadastrado com sucesso!');
                 } else {
                     $compromissoValidacao = Compromisso::query()
                         ->whereIn('tipo', ['pontual' , 'recorrente'])
@@ -132,7 +136,8 @@ class CompromissoController extends Controller
                     if ($compromisso->hora_fim_recorrente == null) {
                     $compromisso->hora_fim_recorrente = $compromisso->hora_inicio_recorrente;
                     }
-                } else {
+                } 
+                else {
                     if ($compromisso->nome == null || 
                     $compromisso->descricao == null || 
                     $compromisso->hora_inicio_recorrente == null ||
@@ -141,7 +146,12 @@ class CompromissoController extends Controller
                     $compromisso->tipo_recorrencia_recorrente == null 
                     ) {
                     echo '<script type="text/javascript">alert("Certifique-se de preencher os campos importantes! "); history.go(-1);</script>';
-                    } else {
+                    $compromisso->save();
+                    $compromisso = Compromisso::all();
+                    return view('compromissos.index')->with('compromissos', $compromisso)
+                                ->with('msg', 'Compromisso cadastrado com sucesso!');
+                    } 
+                    else {
                         $compromissoValidacao = Compromisso::query()
                             ->whereIn('tipo', ['pontual' , 'recorrente'])
                             ->where('data_inicio', '>=' , $compromisso->data_inicio)
@@ -178,6 +188,10 @@ class CompromissoController extends Controller
                     $compromisso->data_fim = $compromisso->data_inicio;
                 } else if ($compromisso->selecaorecorrenciaVenc != 'sem_recorrencia' && $compromisso->data_fim == null) {
                     echo '<script type="text/javascript">alert("Certifique-se de preencher os campos importantes! "); history.go(-1);</script>';
+                    $compromisso->save();
+                    $compromisso = Compromisso::all();
+                    return view('compromissos.index')->with('compromissos', $compromisso)
+                                ->with('msg', 'Compromisso cadastrado com sucesso!');
                 } else {
                     $compromisso->save();
 
