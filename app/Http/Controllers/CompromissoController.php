@@ -100,10 +100,8 @@ class CompromissoController extends Controller
 
                     $compromisso->data_fim = $compromisso->data_inicio;
                 }
-                if ($compromisso->nome == null || 
-                    $compromisso->descricao == null || 
-                    $compromisso->hora_inicio == null || 
-                    $compromisso->data_inicio_pontual == null) {
+                if ($compromisso->nome == null
+                    ) {
                     echo '<script type="text/javascript">alert("Certifique-se de preencher os campos importantes! "); history.go(-1);</script>';
                     $compromisso->save();
                     $compromisso = Compromisso::all();
@@ -138,12 +136,7 @@ class CompromissoController extends Controller
                     }
                 } 
                 else {
-                    if ($compromisso->nome == null || 
-                    $compromisso->descricao == null || 
-                    $compromisso->hora_inicio_recorrente == null ||
-                    $compromisso->data_inicio_recorrente == null ||
-                    $compromisso->data_fim == null ||
-                    $compromisso->tipo_recorrencia_recorrente == null 
+                    if ($compromisso->nome == null  
                     ) {
                     echo '<script type="text/javascript">alert("Certifique-se de preencher os campos importantes! "); history.go(-1);</script>';
                     $compromisso->save();
@@ -175,12 +168,7 @@ class CompromissoController extends Controller
             
             if ($compromisso->tipo == 'vencimento') {
 
-                if ($compromisso->nome == null || 
-                    $compromisso->descricao == null || 
-                    $compromisso->valor == null ||
-                    $compromisso->vencimento == null ||
-                    $compromisso->ultimo_vencimento == null ||
-                    $compromisso->selecaorecorrenciaVenc == null 
+                if ($compromisso->nome == null 
                     ) {
                     echo '<script type="text/javascript">alert("Certifique-se de preencher os campos importantes! "); history.go(-1);</script>';
                     
